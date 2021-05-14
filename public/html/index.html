@@ -37,8 +37,15 @@
 			</ul>
 		</header>
 		<section class="title-wrapper">
-			<h2 class="title">Firebase를 활용한 게시판</h2>
+			<h2 class="title">Firebase를 활용한 한 줄 게시판</h2>
 			<h3 class="title">Firebase Auth/DataBase/Storage</h3>
+		</section>
+		<section class="create-wrapper wrapper">
+			<form class="create-form form-inline" onsubmit="return onSubmit(this);">
+				<input type="text" name="writer" class="form-control" placeholder="작성자">
+				<input type="text" name="content" class="form-control" placeholder="한 줄 내용" autofocus>
+				<button class="btn btn-danger">등록</button>
+			</form>
 		</section>
 		<section class="list-wrapper wrapper">
 			<table class="table table-hover text-center border-bottom">
