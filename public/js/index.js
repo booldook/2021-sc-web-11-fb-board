@@ -1,6 +1,7 @@
 /*************** 글로벌 설정 *****************/
 var auth = firebase.auth();	//firebase의 auth(인증)모듈을 불러온다.
-var googleAuth = new firebase.auth.GoogleAuthProvider();	// 구글로그인 모듈을 불러온다.
+var googleAuth = new firebase.auth.GoogleAuthProvider(); //구글로그인 모듈을 불러온다.
+var user = null;
 
 
 /*************** 사용자 함수 *****************/
@@ -8,11 +9,24 @@ var googleAuth = new firebase.auth.GoogleAuthProvider();	// 구글로그인 모�
 
 
 /*************** 이벤트 등록 *****************/
-$('.bt-login').click(onLogin);
+auth.onAuthStateChanged(onChangeAuth);
+
+$('.bt-login-google').click(onLoginGoogle);
+$('.bt-logout').click(onLogOut);
 
 
 /*************** 이벤트 콜백 *****************/
-function onLogin() {
+function onChangeAuth(r) {
+	user = r;
+	console.log(user);
+}
+
+function onLogOut() {
+	auth.signOut();
+}
+
+function onLoginGoogle() {
 	auth.signInWithPopup(googleAuth);
 }
+
 
