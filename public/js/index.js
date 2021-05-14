@@ -11,7 +11,7 @@ var user = null;
 /*************** 이벤트 등록 *****************/
 auth.onAuthStateChanged(onChangeAuth);
 
-$('.bt-login-google').click(onLoginGoogle);
+$('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
 
 
@@ -19,6 +19,20 @@ $('.bt-logout').click(onLogOut);
 function onChangeAuth(r) {
 	user = r;
 	console.log(user);
+	if(user) {
+		$('.header-wrapper .email').text(user.email);
+		$('.header-wrapper .photo img').attr('src', user.photoURL);
+		$('.header-wrapper .info-wrap').css('display', 'flex');
+		$('.bt-login').hide();
+		$('.bt-logout').show();
+	}
+	else {
+		$('.header-wrapper .email').text('');
+		$('.header-wrapper .photo img').attr('src', '//via.placeholder.com/1x1/333');
+		$('.header-wrapper .info-wrap').css('display', 'none');
+		$('.bt-login').show();
+		$('.bt-logout').hide();
+	}
 }
 
 function onLogOut() {
