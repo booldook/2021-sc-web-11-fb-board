@@ -7,7 +7,13 @@
 html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 /********************** header-wrapper *********************/
-.header-wrapper {font-family: 'Noto Serif', serif;}
+.header-wrapper {font-family: 'Noto Serif', serif; display: flex; align-items: center; background-color: #333; color: #fff;}
+.header-wrapper .logo {font-size: 2em; padding-left: .5em;}
+.header-wrapper .logo i {font-size: .875em;}
+.header-wrapper .navi-wrap {margin-left: auto; display: flex; font-family: 'NanumBarunGothic', sans-serif;}
+.header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer;}
+.header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
+.header-wrapper .navi-wrap .navi.bt-logout {display: none;}
 
 
 /********************** 반응형 설정 *********************/
