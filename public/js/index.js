@@ -2,6 +2,7 @@
 var auth = firebase.auth();	//firebase의 auth(인증)모듈을 불러온다.
 var googleAuth = new firebase.auth.GoogleAuthProvider(); //구글로그인 모듈을 불러온다.
 var db = firebase.database(); //firebase의 database모듈을 불러온다.
+var ref = db.ref('root/board');
 var user = null;
 
 
@@ -15,12 +16,13 @@ $tbody.empty();
 
 /*************** 이벤트 등록 *****************/
 auth.onAuthStateChanged(onChangeAuth);
-db.ref('root/board').on('child_added', onAdded);
-db.ref('root/board').on('child_removed', onRemoved);
-db.ref('root/board').on('child_changed', onChanged);
+ref.on('child_added', onAdded);
+ref.on('child_removed', onRemoved);
+ref.on('child_changed', onChanged);
 
 $('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
+$form.find('.bt-cancel').click(onReset);
 // $(window).resize(onResize);
 
 
@@ -30,7 +32,10 @@ function onRemoved(r) {
 }
 
 function onChanged(r) {
-	console.log(r);
+	$('#'+r.key).find('.writer').text(r.val().writer);
+	$('#'+r.key).find('.content > span').text(r.val().content);
+	$('#'+r.key).find('.readnum').text(r.val().readnum);
+	$('#'+r.key).find('.date').text(moment(r.val().updatedAt).format('YYYY-MM-DD'));
 }
 
 function onAdded(r) {
@@ -38,18 +43,18 @@ function onAdded(r) {
 	var v = r.val();
 	var i = $tbody.find('tr').length + 1;
 	var html = '';
-	html += '<tr id="'+k+'" data-uid="'+v.uid+'">';
+	html += '<tr class="id" id="'+k+'" data-uid="'+v.uid+'">';
 	html += '<td>'+i;
 	html += '</td>';
-	html += '<td class="text-left">'+v.content;
+	html += '<td class="content text-left"><span>'+v.content+'</span>';
 	html += '<div class="btn-group mask">';
 	html += '<button class="bt-chg btn btn-sm btn-info"><i class="fa fa-edit"></i></button>';
 	html += '<button class="bt-rev btn btn-sm btn-info"><i class="fa fa-trash-alt"></i></button>';
 	html += '</div>';
 	html += '</td>';
-	html += '<td>'+v.writer+'</td>';
-	html += '<td>'+moment(v.createdAt).format('YYYY-MM-DD')+'</td>';
-	html += '<td>'+v.readnum+'</td>';
+	html += '<td class="writer">'+v.writer+'</td>';
+	html += '<td class="date">'+moment(v.createdAt).format('YYYY-MM-DD')+'</td>';
+	html += '<td class="readnum">'+v.readnum+'</td>';
 	html += '</tr>';
 	var $tr = $(html).prependTo($tbody);
 	$tr.mouseenter(onTrEnter)
@@ -60,15 +65,22 @@ function onAdded(r) {
 
 function onChgClick() {
 	var key = $(this).parents('tr').attr('id');
-	$('.create-form').find('[name="key"]').val(key);
-	$form.find('.bt-create').hide();
-	$form.find('.btn-group').show();
+	ref.child(key).get().then(function(r) {
+		$form.find('[name="key"]').val(r.key);
+		$form.find('[name="writer"]').val(r.val().writer);
+		$form.find('[name="content"]').val(r.val().content);
+		$form.find('.bt-create').hide();
+		$form.find('.btn-group').show();
+		$form.addClass('active');
+	}).catch(function(err) {
+		console.log(err);
+	});
 }
 
 function onRevClick() {
 	if(confirm('정말로 삭제하시겠습니까?')) {
 		var key = $(this).parents('tr').attr('id');
-		db.ref('root/board/' + key).remove();	// 실제 firebase의 데이터 삭제
+		ref.child(key).remove();	// 실제 firebase의 데이터 삭제
 		/*
 			삭제로직
 			1. db.ref('root/board/' + key).remove();	// firebase remove()
@@ -78,6 +90,15 @@ function onRevClick() {
 			}
 		*/
 	}
+}
+
+function onReset() {
+	$form.find('[name="writer"]').val(user.displayName);
+	$form.find('[name="content"]').val('');
+	$form.find('[name="key"]').val('');
+	$form.find('.btn-group').hide();
+	$form.find('.bt-create').show();
+	$form.removeClass('active');
 }
 
 function onTrEnter() {
@@ -109,16 +130,25 @@ function onSubmit(f) {
 		return false;
 	}
 
-	var data = {
-		writer: f.writer.value,
-		content: f.content.value,
-		createdAt: new Date().getTime(),
-		uid: user.uid,
-		readnum: 0
+
+	var data = { writer: f.writer.value, content: f.content.value }
+	if(user && user.uid) {
+		if(f.key.value === '') {
+			data.createdAt = new Date().getTime();
+			data.readnum = 0;
+			data.uid = user.uid;
+			ref.push(data);
+		}
+		else {
+			data.updatedAt = new Date().getTime();
+			ref.child(f.key.value).update(data);
+		}
 	}
-	if(user && user.uid) db.ref('root/board/').push(data);
 	else alert('정상적인 접근이 아닙니다.');
-	
+
+	$(f).removeClass('active');
+	f.key.value = '';
+	f.writer.value = user.displayName;
 	f.content.value = '';
 	f.content.focus();
 
