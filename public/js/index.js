@@ -19,6 +19,7 @@ db.ref('root/board').on('child_added', onAdded);
 
 $('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
+// $(window).resize(onResize);
 
 
 /*************** 이벤트 콜백 *****************/
@@ -27,24 +28,37 @@ function onAdded(r) {
 	var v = r.val();
 	var i = $tbody.find('tr').length + 1;
 	var html = '';
-	html += '<tr id="'+k+'">';
+	html += '<tr id="'+k+'" data-uid="'+v.uid+'">';
 	html += '<td>'+i;
-	html += '<div class="mask-td">';
-	html += '<button class="btn btn-sm btn-success">수정</button>';
-	html += '<button class="btn btn-sm btn-danger">삭제</button>';
-	html += '<button class="btn btn-sm btn-primary">내용보기</button>';
+	html += '</td>';
+	html += '<td class="text-left">'+v.content;
+	html += '<div class="btn-group mask">';
+	html += '<button class="bt-chg btn btn-sm btn-info"><i class="fa fa-edit"></i></button>';
+	html += '<button class="bt-rev btn btn-sm btn-info"><i class="fa fa-trash-alt"></i></button>';
 	html += '</div>';
 	html += '</td>';
-	html += '<td class="text-left">'+v.content+'</td>';
 	html += '<td>'+v.writer+'</td>';
 	html += '<td>'+moment(v.createdAt).format('YYYY-MM-DD')+'</td>';
 	html += '<td>'+v.readnum+'</td>';
 	html += '</tr>';
-	$tbody.prepend(html);
-	$(window).resize(function() {
-		var wid = $('.list-tb').outerWidth();
-		$('.mask-td').innerWidth(wid);
-	}).trigger('resize');
+	$(html).prependTo($tbody).mouseenter(onTrEnter).mouseleave(onTrLeave);
+	// $(window).trigger('resize');
+}
+
+function onTrEnter() {
+	var uid = $(this).data('uid');
+	if(user && uid === user.uid) {
+		$(this).find('.mask').css('display', 'inline-block');
+	}
+}
+
+function onTrLeave() {
+	$(this).find('.mask').css('display', 'none');
+}
+
+function onResize() {
+	var wid = $('.list-tb').innerWidth();
+	$('.list-tb .mask').innerWidth(wid);
 }
 
 function onSubmit(f) {
