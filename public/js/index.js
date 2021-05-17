@@ -3,8 +3,7 @@ var auth = firebase.auth();	//firebase의 auth(인증)모듈을 불러온다.
 var googleAuth = new firebase.auth.GoogleAuthProvider(); //구글로그인 모듈을 불러온다.
 var db = firebase.database(); //firebase의 database모듈을 불러온다.
 var user = null;
-var page = 1;
-var pagerCnt = 3;		// 페이저의
+
 
 var $tbody = $('.list-wrapper tbody');
 
@@ -29,13 +28,23 @@ function onAdded(r) {
 	var i = $tbody.find('tr').length + 1;
 	var html = '';
 	html += '<tr id="'+k+'">';
-	html += '<td>'+i+'</td>';
+	html += '<td>'+i;
+	html += '<div class="mask-td">';
+	html += '<button class="btn btn-sm btn-success">수정</button>';
+	html += '<button class="btn btn-sm btn-danger">삭제</button>';
+	html += '<button class="btn btn-sm btn-primary">내용보기</button>';
+	html += '</div>';
+	html += '</td>';
 	html += '<td class="text-left">'+v.content+'</td>';
 	html += '<td>'+v.writer+'</td>';
 	html += '<td>'+moment(v.createdAt).format('YYYY-MM-DD')+'</td>';
 	html += '<td>'+v.readnum+'</td>';
 	html += '</tr>';
 	$tbody.prepend(html);
+	$(window).resize(function() {
+		var wid = $('.list-tb').outerWidth();
+		$('.mask-td').innerWidth(wid);
+	}).trigger('resize');
 }
 
 function onSubmit(f) {
