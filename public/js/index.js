@@ -41,8 +41,19 @@ function onAdded(r) {
 	html += '<td>'+moment(v.createdAt).format('YYYY-MM-DD')+'</td>';
 	html += '<td>'+v.readnum+'</td>';
 	html += '</tr>';
-	$(html).prependTo($tbody).mouseenter(onTrEnter).mouseleave(onTrLeave);
-	// $(window).trigger('resize');
+	var $tr = $(html).prependTo($tbody);
+	$tr.mouseenter(onTrEnter)
+	$tr.mouseleave(onTrLeave);
+	$tr.find('.bt-chg').click(onChgClick);
+	$tr.find('.bt-rev').click(onRevClick);
+}
+
+function onChgClick() {
+	console.log( $(this).parents('tr').attr('id') );
+}
+
+function onRevClick() {
+
 }
 
 function onTrEnter() {
