@@ -6,6 +6,7 @@ var user = null;
 
 
 var $tbody = $('.list-wrapper tbody');
+var $form = $('.create-form');
 
 
 /*************** 사용자 함수 *****************/
@@ -58,7 +59,10 @@ function onAdded(r) {
 }
 
 function onChgClick() {
-	console.log( $(this).parents('tr').attr('id') );
+	var key = $(this).parents('tr').attr('id');
+	$('.create-form').find('[name="key"]').val(key);
+	$form.find('.bt-create').hide();
+	$form.find('.btn-group').show();
 }
 
 function onRevClick() {
