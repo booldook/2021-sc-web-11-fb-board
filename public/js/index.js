@@ -15,7 +15,8 @@ $tbody.empty();
 /*************** 이벤트 등록 *****************/
 auth.onAuthStateChanged(onChangeAuth);
 db.ref('root/board').on('child_added', onAdded);
-// db.ref('root/board').on('child_removed', onremoved);
+db.ref('root/board').on('child_removed', onRemoved);
+db.ref('root/board').on('child_changed', onChanged);
 
 $('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
@@ -23,6 +24,14 @@ $('.bt-logout').click(onLogOut);
 
 
 /*************** 이벤트 콜백 *****************/
+function onRemoved(r) {
+	$('#'+r.key).remove();
+}
+
+function onChanged(r) {
+	console.log(r);
+}
+
 function onAdded(r) {
 	var k = r.key;
 	var v = r.val();
@@ -53,7 +62,18 @@ function onChgClick() {
 }
 
 function onRevClick() {
-
+	if(confirm('정말로 삭제하시겠습니까?')) {
+		var key = $(this).parents('tr').attr('id');
+		db.ref('root/board/' + key).remove();	// 실제 firebase의 데이터 삭제
+		/*
+			삭제로직
+			1. db.ref('root/board/' + key).remove();	// firebase remove()
+			2. db.ref('root/board/').on('child_removed', onRemoved); 실제 데이터가 삭제되면 이벤트 실행
+			3. function onRemoved(r) { r: 삭제된 데이터
+				$('#'+r.key).remove();	// jQuery remove()
+			}
+		*/
+	}
 }
 
 function onTrEnter() {
