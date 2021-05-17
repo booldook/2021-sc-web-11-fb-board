@@ -151,6 +151,8 @@ function onSubmit(f) {
 	f.writer.value = user.displayName;
 	f.content.value = '';
 	f.content.focus();
+	$form.find('.btn-group').hide();
+	$form.find('.bt-create').show();
 
 	return false;
 }
