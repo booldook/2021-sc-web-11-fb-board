@@ -1,0 +1,5 @@
+section {height: 100vh; border: 10px solid red;}
+.stage-wrapper {width: calc(100% - 20px); height: calc(100vh - 20px); position: fixed; top: 10px; left: 10px; display: flex; align-items: center; justify-content: center;}
+.stage-wrap {border: 10px solid blue; width: 600px; height: 600px; background-color: #fff; padding: 100px; perspective: 400px;}
+
+.stage-wrap .box {width: 400px; height: 400px; background-color: orangered; transform-style: preserve-3d; transform: rotateX(0);}
