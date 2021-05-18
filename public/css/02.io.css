@@ -1,0 +1,27 @@
+body {padding: 1000px 0;}
+#box {
+	background-color: rgba(40, 40, 190, 255);
+	border: 4px solid rgb(20, 20, 120);
+	transition: background-color 1s, border 1s;
+	width: 350px;
+	height: 350px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	margin: 0 auto;
+}
+
+.vertical {
+	color: white;
+	font: 32px "Arial";
+}
+
+.extra {
+	width: 350px;
+	height: 350px;
+	margin-top: 10px;
+	border: 4px solid rgb(20, 20, 120);
+	text-align: center;
+	padding: 20px;
+}
