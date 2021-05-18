@@ -18,12 +18,15 @@ var $pager = $('.pager-wrapper').find('.pagination');
 
 /*************** 사용자 함수 *****************/
 function genPager(r) {
-	var startIdx = (page == 1) ? null : $tbody.find('tr:last-child').data('sort');
-	ref.orderByChild('sort').startAfter(startIdx).limitToFirst(listCnt).get().then(function(r) {
+	var startIdx = (page - 1) * listCnt;
+	// var startIdx = (page == 1) ? null : $tbody.find('tr:last-child').data('sort');
+	ref.get().then(function(r) {
 		$tbody.empty();
-		r.forEach(function(v) {
-			genHTML(v.key, v.val(), 'append');
-		})
+		var temp = [];
+		r.forEach(function(v) { temp.unshift(v) });
+		for(var i=startIdx; i<startIdx+listCnt; i++) {
+			genHTML(temp[i].key, temp[i].val(), 'append');
+		}
 	});
 	if(r) totalRecord = r.numChildren();
 	var totalPage = Math.ceil(totalRecord / listCnt);
@@ -127,7 +130,7 @@ $form.find('.bt-cancel').click(onReset);
 /*************** 이벤트 콜백 *****************/
 function onRemoved(r) {
 	$('#'+r.key).remove();
-	// genPager();
+	genPager();
 }
 
 function onChanged(r) {
@@ -138,10 +141,8 @@ function onChanged(r) {
 }
 
 function onAdded(r) {
-	console.log('hi');
 	var k = r.key;
 	var v = r.val();
-	var $tr = genHTML(k, v);
 }
 
 function onChgClick() {
@@ -220,6 +221,8 @@ function onSubmit(f) {
 			data.uid = user.uid;
 			data.sort = -data.createdAt;
 			ref.push(data);
+			page = 1;
+			genPager();
 		}
 		else {
 			data.updatedAt = new Date().getTime();
