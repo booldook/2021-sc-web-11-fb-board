@@ -7,7 +7,7 @@ var user = null;
 
 // paging
 var observer;
-var listCnt = 5;
+var listCnt = 10;
 
 
 var $tbody = $('.list-wrapper tbody');
@@ -56,6 +56,7 @@ ref.limitToLast(listCnt).on('child_added', onAdded);
 ref.on('child_removed', onRemoved);
 ref.on('child_changed', onChanged);
 
+
 $('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
 $form.find('.bt-cancel').click(onReset);
@@ -81,19 +82,20 @@ function onAdded(r) {
 	observer.observe($tbody.find('tr:last-child')[0]);
 }
 
-function onIntersection(els, observer) {
-	els.forEach(function(v) {
+function onIntersection(entries, observer) {
+	entries.forEach(function(v) {
+		console.log(v.isIntersecting);
 		if(v.isIntersecting) {
-			observer.unobserve(v.target);
 			var key = $tbody.find('tr:last-child').data('sort');
 			ref.orderByChild('sort').startAfter(key).limitToFirst(listCnt).get().then(function(r) {
 				r.forEach(function(v) {
 					genHTML(v.key, v.val(), 'append');
 				});
 				observer.observe($tbody.find('tr:last-child')[0]);
+				observer.unobserve(v.target);
 			});
 		}
-	})
+	});
 }
 
 function onChgClick() {
@@ -193,7 +195,6 @@ function onSubmit(f) {
 
 function onChangeAuth(r) {
 	user = r;
-	console.log(user);
 	if(user) {
 		$('.header-wrapper .email').text(user.email);
 		$('.header-wrapper .photo img').attr('src', user.photoURL);
