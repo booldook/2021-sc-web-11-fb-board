@@ -18,6 +18,13 @@ var $pager = $('.pager-wrapper').find('.pagination');
 
 /*************** 사용자 함수 *****************/
 function genPager(r) {
+	var startIdx = (page == 1) ? null : $tbody.find('tr:last-child').data('sort');
+	ref.orderByChild('sort').startAfter(startIdx).limitToFirst(listCnt).get().then(function(r) {
+		$tbody.empty();
+		r.forEach(function(v) {
+			genHTML(v.key, v.val(), 'append');
+		})
+	});
 	if(r) totalRecord = r.numChildren();
 	var totalPage = Math.ceil(totalRecord / listCnt);
 	var startIdx = (page - 1) * listCnt;
@@ -106,7 +113,7 @@ $tbody.empty();
 /*************** 이벤트 등록 *****************/
 auth.onAuthStateChanged(onChangeAuth);
 ref.get().then(genPager);
-ref.limitToLast(listCnt).on('child_added', onAdded);
+// ref.limitToLast(listCnt).on('child_added', onAdded);
 ref.on('child_removed', onRemoved);
 ref.on('child_changed', onChanged);
 
@@ -120,6 +127,7 @@ $form.find('.bt-cancel').click(onReset);
 /*************** 이벤트 콜백 *****************/
 function onRemoved(r) {
 	$('#'+r.key).remove();
+	// genPager();
 }
 
 function onChanged(r) {
