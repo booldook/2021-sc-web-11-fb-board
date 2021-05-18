@@ -10,14 +10,6 @@ var page = 1;
 var pagerCnt = 3;
 var listCnt = 5;
 var totalRecord = 0;
-var totalPage = 0;
-var startPage = 0;
-var endPage = 0;
-var nextPage = 0;
-var prevPage = 0;
-var nextPager = 0;
-var prevPager = 0;
-var firstPage = 0;
 
 var $tbody = $('.list-wrapper tbody');
 var $form = $('.create-form');
@@ -27,15 +19,14 @@ var $pager = $('.pager-wrapper').find('.pagination');
 /*************** 사용자 함수 *****************/
 function genPager(r) {
 	if(r) totalRecord = r.numChildren();
-	totalPage = Math.ceil(totalRecord / listCnt);
-	startIdx = (page - 1) * listCnt;
-	startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
-	endPage = startPage + pagerCnt - 1;
-	nextPage = page + 1;
-	prevPage = page - 1;
-	nextPager = endPage + 1;
-	prevPager = startPage - 1;
-	firstPage = 1;
+	var totalPage = Math.ceil(totalRecord / listCnt);
+	var startIdx = (page - 1) * listCnt;
+	var startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
+	var endPage = (startPage + pagerCnt - 1 > totalPage) ? totalPage : startPage + pagerCnt - 1;
+	var nextPage = (page + 1 > totalPage) ? totalPage : page + 1;
+	var prevPage = (page - 1 < 1) ? 1 : page - 1;
+	var nextPager = (endPage + 1 > totalPage) ? totalPage : endPage + 1;
+	var prevPager = (startPage - 1 < 1) ? 1 : startPage - 1;
 	console.log('page => ', page);
 	console.log('totalRecord => ', totalRecord);
 	console.log('startIdx => ', startIdx);
@@ -57,7 +48,7 @@ function genPager(r) {
 	html += '<span class="page-link bi-chevron-left"></span>';
 	html += '</li>';
 	for(var i=startPage; i<=endPage; i++) {
-		html += '<li class="page-item" data-page="'+i+'">';
+		html += '<li class="page-item '+(i == page ? 'active' : '')+'" data-page="'+i+'">';
 		html += '<span class="page-link">'+i+'</span>';
 		html += '</li>';
 	}

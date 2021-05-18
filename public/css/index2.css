@@ -10,6 +10,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 /********************** pagination custom *********************/
 .pagination {justify-content: center;}
+.page-item {cursor: pointer;}
 .page-item .page-link {padding: .5em .75em .35em .75em; color: inherit;}
 .page-item.active .page-link {background-color: #343a40; border-color: #454d55;}
 
