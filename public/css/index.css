@@ -53,7 +53,8 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .list-wrapper table > thead > tr > :nth-child(4) {width: 20%}
 .list-wrapper table > thead > tr > :nth-child(5) {width: 10%}
 .list-wrapper table > tbody .mask {display: none; margin-left: 2em; position: absolute; margin-top: -8px;}
-
+.list-wrapper table > tbody > tr > td {opacity: 0; transition: all 3s;}
+.list-wrapper table > tbody > tr.active > td {opacity: 1;}
 
 
 /********************** 반응형 설정 *********************/
