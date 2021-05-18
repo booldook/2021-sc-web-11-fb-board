@@ -8,7 +8,7 @@ var user = null;
 // Pagination
 var page = 1;
 var pagerCnt = 3;
-var listCnt = 10;
+var listCnt = 5;
 var totalRecord = 0;
 var totalPage = 0;
 var startPage = 0;
@@ -18,7 +18,6 @@ var prevPage = 0;
 var nextPager = 0;
 var prevPager = 0;
 var firstPage = 0;
-var lastPage = 0;
 
 var $tbody = $('.list-wrapper tbody');
 var $form = $('.create-form');
@@ -27,49 +26,57 @@ var $pager = $('.pager-wrapper').find('.pagination');
 
 /*************** 사용자 함수 *****************/
 function genPager(r) {
-	totalRecord = r.numChildren();
+	if(r) totalRecord = r.numChildren();
 	totalPage = Math.ceil(totalRecord / listCnt);
 	startIdx = (page - 1) * listCnt;
 	startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
 	endPage = startPage + pagerCnt - 1;
+	nextPage = page + 1;
 	prevPage = page - 1;
 	nextPager = endPage + 1;
 	prevPager = startPage - 1;
 	firstPage = 1;
-	lastPage = totalPage;
 	console.log('page => ', page);
 	console.log('totalRecord => ', totalRecord);
 	console.log('startIdx => ', startIdx);
 	console.log('startPage => ', startPage);
 	console.log('endPage => ', endPage);
+	console.log('nextPage => ', nextPage);
 	console.log('prevPage => ', prevPage);
 	console.log('nextPager => ', nextPager);
 	console.log('prevPager => ', prevPager);
-	console.log('lastPage => ', lastPage);
 
 	var html = '';
-	html += '<li class="page-item">';
+	html += '<li class="page-item" data-page="1">';
 	html += '<span class="page-link bi-chevron-bar-left"></span>';
 	html += '</li>';
-	html += '<li class="page-item">';
+	html += '<li class="page-item" data-page="'+prevPager+'">';
 	html += '<span class="page-link bi-chevron-double-left"></span>';
 	html += '</li>';
-	html += '<li class="page-item">';
+	html += '<li class="page-item" data-page="'+prevPage+'">';
 	html += '<span class="page-link bi-chevron-left"></span>';
 	html += '</li>';
-	html += '<li class="page-item">';
-	html += '<span class="page-link">1</span>';
-	html += '</li>';
-	html += '<li class="page-item">';
+	for(var i=startPage; i<=endPage; i++) {
+		html += '<li class="page-item" data-page="'+i+'">';
+		html += '<span class="page-link">'+i+'</span>';
+		html += '</li>';
+	}
+	html += '<li class="page-item" data-page="'+nextPage+'">';
 	html += '<span class="page-link bi-chevron-right"></span>';
 	html += '</li>';
-	html += '<li class="page-item">';
+	html += '<li class="page-item" data-page="'+nextPager+'">';
 	html += '<span class="page-link bi-chevron-double-right"></span>';
 	html += '</li>';
-	html += '<li class="page-item">';
+	html += '<li class="page-item" data-page="'+totalPage+'">';
 	html += '<span class="page-link bi-chevron-bar-right"></span>';
 	html += '</li>';
 	$pager.html(html);
+	$pager.find('.page-item').click(onPagerClick);
+}
+
+function onPagerClick() {
+	page = $(this).data('page');
+	genPager();
 }
 
 function genHTML(k, v, method) {
