@@ -1,0 +1,90 @@
+/********************** 글로벌 설정 *********************/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+/* font-family: 'Noto Serif', serif; */
+@import 'nanum-barun.css';
+/* font-family: 'NanumBarunGothic', sans-serif */
+
+html, body {font-family: 'NanumBarunGothic', sans-serif;}
+.wrapper {max-width: 1168px; margin: 0 auto;}
+
+
+/********************** pagination custom *********************/
+.pagination {justify-content: center;}
+.page-item .page-link {padding: .5em .75em .35em .75em; color: inherit;}
+.page-item.active .page-link {background-color: #343a40; border-color: #454d55;}
+
+
+/********************** header-wrapper *********************/
+.header-wrapper {font-family: 'Noto Serif', serif; display: flex; align-items: center; background-color: #333; color: #fff;}
+.header-wrapper .logo {font-size: 1.75em; padding-left: .5em;}
+.header-wrapper .logo::after {content: 'FIREBASE BOARD'; display: inline-block;}
+.header-wrapper .logo i {font-size: .875em;}
+.header-wrapper .navi-wrap {margin-left: auto; display: flex; align-items: center; font-family: 'NanumBarunGothic', sans-serif;}
+.header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer;}
+.header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
+.header-wrapper .navi-wrap .navi.bt-logout {display: none;}
+.header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
+.header-wrapper .navi-wrap .bt-logout::after {content: 'LOGOUT'; display: inline-block;}
+
+.header-wrapper .navi-wrap .info-wrap {display: flex; align-items: center; display: none;}
+.header-wrapper .navi-wrap .info-wrap .photo {border-radius: 50%; overflow: hidden; width: 36px; margin-right: .5em;}
+.header-wrapper .navi-wrap .info-wrap .email {font-size: 1.125em; margin-right: .5em;}
+
+
+/********************** title-wrapper *********************/
+.title-wrapper {margin: 4em 0 3em 0; text-align: center; display: flex; align-items: center; flex-direction: column;}
+.title-wrapper h2.title {font-size: 1.75em; border-bottom: 2px solid #333; line-height: 1.3; margin-bottom: .5em;}
+.title-wrapper h3.title {font-size: 1.125em; color: #999;}
+
+/********************** create-wrapper *********************/
+.create-wrapper {padding: .5em 0; border-top: 2px solid #343a40; display: none;}
+.create-wrapper form {display: flex; align-items: center;}
+.create-wrapper form > input[name='content'] {flex-grow: 1; margin: 0 .5em;}
+.create-wrapper form .btn {padding: .375rem 1.5rem;}
+.create-wrapper form input {transition: all .5s;}
+.create-wrapper form.active input {border-color: #28a745; background-color: #fff7dc;}
+
+
+/********************** list-wrapper *********************/
+.list-wrapper {}
+.list-wrapper table {margin-bottom: 2em;}
+.list-wrapper table > thead > tr > :nth-child(1) {width: 10%}
+.list-wrapper table > thead > tr > :nth-child(3) {width: 15%}
+.list-wrapper table > thead > tr > :nth-child(4) {width: 20%}
+.list-wrapper table > thead > tr > :nth-child(5) {width: 10%}
+.list-wrapper table > tbody .mask {display: none; margin-left: 2em; position: absolute; margin-top: -8px;}
+.list-wrapper table > tbody > tr > td {opacity: 0; transition: all 3s;}
+.list-wrapper table > tbody > tr.active > td {opacity: 1;}
+
+
+/********************** 반응형 설정 *********************/
+@media (max-width: 1399px) {
+	
+}
+
+@media (max-width: 1199px) {
+	.wrapper {margin: 0 1em;}
+}
+
+@media (max-width: 991px) {
+	.list-wrapper table > thead > tr > :nth-child(5) {display: none;}
+	.list-wrapper table > tbody > tr > :nth-child(5) {display: none;}
+}
+
+@media (max-width: 767px) {
+	.header-wrapper .logo::after {content: 'FB BOARD';}
+	.header-wrapper .email {display: none;}
+	.header-wrapper .navi-wrap .bt-login::after {content: '';}
+	.header-wrapper .navi-wrap .bt-logout::after {content: '';}
+	.list-wrapper table > thead > tr > :nth-child(1) {width: 15%;}
+	.list-wrapper table > thead > tr > :nth-child(3) {display: none;}
+	.list-wrapper table > tbody > tr > :nth-child(3) {display: none;}
+	.list-wrapper table > thead > tr > :nth-child(4) {display: none;}
+	.list-wrapper table > tbody > tr > :nth-child(4) {display: none;}
+}
+
+@media (max-width: 575px) {
+	.create-wrapper form > input {margin: .25em 0;}
+	.create-wrapper form > input[name='content'] {margin: 0 0 .5em 0;}
+	.create-wrapper form > .btn {margin: auto;}
+}
