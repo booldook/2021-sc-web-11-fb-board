@@ -37,6 +37,15 @@ function genPager(r) {
 	prevPager = startPage - 1;
 	firstPage = 1;
 	lastPage = totalPage;
+	console.log('page => ', page);
+	console.log('totalRecord => ', totalRecord);
+	console.log('startIdx => ', startIdx);
+	console.log('startPage => ', startPage);
+	console.log('endPage => ', endPage);
+	console.log('prevPage => ', prevPage);
+	console.log('nextPager => ', nextPager);
+	console.log('prevPager => ', prevPager);
+	console.log('lastPage => ', lastPage);
 
 	var html = '';
 	html += '<li class="page-item">';
