@@ -18,7 +18,7 @@ var $form = $('.create-form');
 function genHTML(k, v, method) {
 	var html = '';
 	html += '<tr class="id" id="'+k+'" data-uid="'+v.uid+'" data-sort="'+v.sort+'">';
-	html += '<td>'+'A';
+	html += '<td>&nbsp;';
 	html += '</td>';
 	html += '<td class="content text-left"><span>'+v.content+'</span>';
 	html += '<div class="btn-group mask">';
@@ -31,6 +31,12 @@ function genHTML(k, v, method) {
 	html += '<td class="readnum">'+v.readnum+'</td>';
 	html += '</tr>';
 	var $tr = (method && method == 'append') ? $(html).appendTo($tbody) : $(html).prependTo($tbody);
+
+	var num = $tbody.find('tr').length;
+	$tbody.find('tr').each(function(i) {
+		$(this).find('td:first-child').text(num--);
+	});
+
 	setTimeout(function(){ $tr.addClass('active'); }, 100);
 	$tr.mouseenter(onTrEnter);
 	$tr.mouseleave(onTrLeave);
