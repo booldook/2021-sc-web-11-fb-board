@@ -15,7 +15,7 @@ function createObserver() {
 		root: null,
 		rootMargin: "0px",
 		// threshold: buildThresholdList()
-		threshold: .5
+		threshold: 0
 	};
 
 	observer = new IntersectionObserver(onIntersection, options);
@@ -40,13 +40,17 @@ function onIntersection(el, observer) {
 	el.forEach((v) => {
 		// if (v.intersectionRatio > prevRatio) {
 		console.log(v.isIntersecting);
-		if (v.isIntersecting) {
+		if(v.isIntersecting) {
 			v.target.style.backgroundColor = increasingColor.replace("ratio", 1);
+			observer.unobserve(v.target);
 			// v.target.style.backgroundColor = increasingColor.replace("ratio", v.intersectionRatio);
-		} else {
-			v.target.style.backgroundColor = decreasingColor.replace("ratio", 1);
+		} 
+		/* 
+		else  {
+			// v.target.style.backgroundColor = decreasingColor.replace("ratio", 1);
 			// v.target.style.backgroundColor = decreasingColor.replace("ratio", v.intersectionRatio);
 		}
+		*/
 
 		prevRatio = v.intersectionRatio;
 	});
