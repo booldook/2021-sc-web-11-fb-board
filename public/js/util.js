@@ -179,3 +179,15 @@ function cloneObject(obj) {
 	// var props = {...slick}; // ES6 DeepCopy
 	return JSON.parse(JSON.stringify(obj));
 }
+
+
+/*************** getLocation promise version *****************/
+function getGeo() {
+	return new Promise(function(resolve, reject) {
+		navigator.geolocation.getCurrentPosition(function(r) {
+			resolve({ lat: r.coords.latitude, lon: r.coords.longitude });
+		}, function(err) {
+			reject(err);
+		});
+	});
+}

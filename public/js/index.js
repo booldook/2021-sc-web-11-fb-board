@@ -52,11 +52,8 @@ $tbody.empty();
 
 /*************** 이벤트 등록 *****************/
 auth.onAuthStateChanged(onChangeAuth);
-ref.once('value', function(){
-
-});
-ref.once('value').then(function(){
-
+ref.once('value').then(function(r){
+	
 });
 // ref.limitToLast(listCnt).on('child_added', onAdded);
 ref.on('child_removed', onRemoved);

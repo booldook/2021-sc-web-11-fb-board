@@ -1,0 +1,69 @@
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/util.js"></script>
+<script>
+var appid = '02efdd64bdc14b279bc91d9247db4722';
+var dailyURL = 'https://api.openweathermap.org/data/2.5/weather';
+var weeklyURL = 'https://api.openweathermap.org/data/2.5/forecast';
+var data = { units: 'metric', appid: appid }
+
+/*
+1. 위치정보를 가져온다.
+2. 가져온 위치정보로 현재 날씨를 가져온다.
+3. 가져온 현재날씨의 위치정보로 5일간 날씨를 가져온다.
+*/
+/* callback version */
+navigator.geolocation.getCurrentPosition(function(r) {
+	data.lat = r.coords.latitude;
+	data.lon = r.coords.longitude;
+	$.get(dailyURL, data, function(r) {
+		data.lat = r.coord.lat;
+		data.lon = r.coord.lon;
+		$.get(weeklyURL, data, function(r) {
+			console.log(r);
+		})
+	});
+}, function(err) {
+	console.log(err);
+});
+
+/* promise */
+getGeo()
+.then(function(r) {
+	data.lat = r.lat;
+	data.lon = r.lon;
+	return $.get(dailyURL, data);
+})
+.then(function(r) {
+	data.lat = r.coord.lat;
+	data.lon = r.coord.lon;
+	return $.get(weeklyURL, data);
+})
+.then(function(r) {
+	console.log(r);
+})
+.catch(function(err) {
+	console.log(err);
+});
+
+
+/* async/await */
+async function weather() {
+	try {
+		var geo = await getGeo();
+		data.lat = geo.lat;
+		data.lon = geo.lon;
+
+		var daily = await $.get(dailyURL, data);
+		data.lat = daily.coord.lat;
+		data.lon = daily.coord.lon;
+
+		var weekly = await $.get(weeklyURL, data);
+		console.log(weekly);
+	}
+	catch(err) {
+		console.log(err);
+	}
+}
+
+weather();
+</script>

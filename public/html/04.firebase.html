@@ -21,9 +21,12 @@ ref.on('child_added', function(){});
 ref.on('child_removed', function(){});
 ref.on('child_changed', function(){});
 
-ref.once('value').then(function(){}).catch(function(){}); // READ
+console.log(ref.once('value'));
+/*
+.then(function(){}).catch(function(){}); // READ
 ref.push({});  // Create
 ref.set({}, function(){});  // Create
 ref.child('-M2sadkjf23sda9fi8asdf').remove();  // Delete
 ref.child('-M2sadkjf23sda9fi8asdf').update({});  // Update
+*/
 </script>
