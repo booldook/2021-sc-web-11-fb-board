@@ -1,0 +1,16 @@
+<script>
+function sum(a, b, fn) {
+	var c = a + b;
+	fn(c);
+}
+
+sum(1, 2, function(r){
+	console.log(r * r);
+});
+
+setTimeout(function() {
+	console.log('콜백실행');
+}, 1000);
+
+console.log('Hi~');
+</script>

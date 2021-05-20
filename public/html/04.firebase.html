@@ -1,0 +1,29 @@
+<script src="/__/firebase/8.6.1/firebase-app.js"></script>
+<script src="/__/firebase/8.6.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.6.1/firebase-database.js"></script>
+<script src="/__/firebase/8.6.1/firebase-storage.js"></script>
+<script src="/__/firebase/8.6.1/firebase-analytics.js"></script>
+<script src="/__/firebase/8.6.1/firebase-performance.js"></script>
+<script src="/__/firebase/init.js?useEmulator=true"></script>
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/lodash.min.js"></script>
+<script src="../js/moment.min.js"></script>
+<script>
+/* 
+firebase method
+var db = firebase.database();
+var ref = db.ref('root/board');
+*/
+var db = firebase.database();
+var ref = db.ref('root/board');
+
+ref.on('child_added', function(){});
+ref.on('child_removed', function(){});
+ref.on('child_changed', function(){});
+
+ref.once('value').then(function(){}).catch(function(){}); // READ
+ref.push({});  // Create
+ref.set({}, function(){});  // Create
+ref.child('-M2sadkjf23sda9fi8asdf').remove();  // Delete
+ref.child('-M2sadkjf23sda9fi8asdf').update({});  // Update
+</script>
