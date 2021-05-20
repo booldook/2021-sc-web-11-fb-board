@@ -6,6 +6,7 @@
 
 html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .wrapper {max-width: 1168px; margin: 0 auto;}
+.container-wrapper {height: 100vh; display: flex; flex-direction: column; justify-content: stretch; align-items: center;}
 
 
 /********************** pagination custom *********************/
@@ -15,14 +16,16 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** header-wrapper *********************/
-.header-wrapper {font-family: 'Noto Serif', serif; display: flex; align-items: center; background-color: #333; color: #fff;}
+.header-wrapper {font-family: 'Noto Serif', serif; display: flex; align-items: center; background-color: #a0368e; color: #fff; width: 100%;}
+.header-wrapper br {display: none;}
 .header-wrapper .logo {font-size: 1.75em; padding-left: .5em; display: flex; align-items: center;}
-.header-wrapper .logo::after {content: 'FIREBASE BOARD'; display: inline-block;}
+.header-wrapper .logo::after {content: 'FIREBASE TALK'; display: inline-block;}
 .header-wrapper .logo i {font-size: .875em; margin-right: .5em;}
 .header-wrapper .navi-wrap {margin-left: auto; display: flex; font-family: 'NanumBarunGothic', sans-serif;}
-.header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer;}
+.header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer; flex-shrink: 1;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
-.header-wrapper .navi-wrap .navi.bt-logout {display: none;}
+.header-wrapper .navi-wrap .navi.bt-login {align-items: center;}
+.header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center;}
 .header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
 .header-wrapper .navi-wrap .bt-logout::after {content: 'LOGOUT'; display: inline-block;}
 
@@ -36,24 +39,18 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .title-wrapper h3.title {font-size: 1.125em; color: #999;}
 
 /********************** create-wrapper *********************/
-.create-wrapper {padding: .5em 0; border-top: 2px solid #343a40; display: none;}
-.create-wrapper form {display: flex; align-items: center;}
-.create-wrapper form > input[name='content'] {flex-grow: 1; margin: 0 .5em;}
-.create-wrapper form .btn {padding: .375rem 1.5rem;}
+.create-wrapper {padding: .5em 0; display: none; width: 96%;}
+.create-wrapper form {display: flex; align-items: center; flex-wrap: nowrap;}
+.create-wrapper form > input[name='content'] {flex-grow: 1; margin: .5em; min-width: 50%;}
+.create-wrapper form .btn {padding: .375rem 1.5rem; flex-shrink: 0;}
 .create-wrapper form input {transition: all .5s;}
 .create-wrapper form.active input {border-color: #28a745; background-color: #fff7dc;}
 
 
 /********************** list-wrapper *********************/
-.list-wrapper {}
-.list-wrapper table {margin-bottom: 2em;}
-.list-wrapper table > thead > tr > :nth-child(1) {width: 10%}
-.list-wrapper table > thead > tr > :nth-child(3) {width: 15%}
-.list-wrapper table > thead > tr > :nth-child(4) {width: 20%}
-.list-wrapper table > thead > tr > :nth-child(5) {width: 10%}
-.list-wrapper table > tbody .mask {display: none; margin-left: 2em; position: absolute; margin-top: -8px;}
-.list-wrapper table > tbody > tr > td {opacity: 0; transition: all 3s;}
-.list-wrapper table > tbody > tr.active > td {opacity: 1;}
+.list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px;}
+
+.gap-wrapper {height: .5em;}
 
 
 /********************** 반응형 설정 *********************/
@@ -66,26 +63,22 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 }
 
 @media (max-width: 991px) {
-	.list-wrapper table > thead > tr > :nth-child(5) {display: none;}
-	.list-wrapper table > tbody > tr > :nth-child(5) {display: none;}
+
 }
 
 @media (max-width: 767px) {
-	.header-wrapper .logo::after {content: 'FB BOARD'; letter-spacing: -2px;}
+	.header-wrapper .logo::after {content: 'FB TALK'; letter-spacing: -2px;}
 	.header-wrapper .email {display: none;}
 	.header-wrapper .navi-wrap .bt-login::after {content: '';}
 	.header-wrapper .navi-wrap .bt-logout::after {content: '';}
-	.list-wrapper table > thead > tr > :nth-child(1) {width: 15%;}
-	.list-wrapper table > thead > tr > :nth-child(3) {display: none;}
-	.list-wrapper table > tbody > tr > :nth-child(3) {display: none;}
-	.list-wrapper table > thead > tr > :nth-child(4) {display: none;}
-	.list-wrapper table > tbody > tr > :nth-child(4) {display: none;}
 }
 
 @media (max-width: 575px) {
+	.title-wrapper {margin: 2em 0 1.5em 0;}
 	.title-wrapper h2.title {font-size: 1.25em;}
 	.header-wrapper .navi-wrap .navi {padding: 1em .5em;}
-	.create-wrapper form > input {margin: .25em 0;}
-	.create-wrapper form > input[name='content'] {margin: 0 0 .5em 0;}
+	.header-wrapper .navi-wrap .navi.bt-login {padding: 1em;}
+	.header-wrapper .navi-wrap .navi.bt-logout {padding: 1em;}
+	.header-wrapper br {display: block;}
 	.create-wrapper form > .btn {margin: auto;}
 }

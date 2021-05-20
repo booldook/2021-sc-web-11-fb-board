@@ -22,7 +22,8 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .navi-wrap {margin-left: auto; display: flex; font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
-.header-wrapper .navi-wrap .navi.bt-logout {display: none;}
+.header-wrapper .navi-wrap .navi.bt-login {align-items: center;}
+.header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center;}
 .header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
 .header-wrapper .navi-wrap .bt-logout::after {content: 'LOGOUT'; display: inline-block;}
 
@@ -85,6 +86,8 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 @media (max-width: 575px) {
 	.title-wrapper h2.title {font-size: 1.25em;}
 	.header-wrapper .navi-wrap .navi {padding: 1em .5em;}
+	.header-wrapper .navi-wrap .navi.bt-login {padding: 1em;}
+	.header-wrapper .navi-wrap .navi.bt-logout {padding: 1em;}
 	.create-wrapper form > input {margin: .25em 0;}
 	.create-wrapper form > input[name='content'] {margin: 0 0 .5em 0;}
 	.create-wrapper form > .btn {margin: auto;}

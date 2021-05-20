@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="../css/bootstrap-icons.css">
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/base.css">
-	<link rel="stylesheet" href="../css/index-pager.css">
+	<link rel="stylesheet" href="../css/talk.css">
 	<script src="/__/firebase/8.6.1/firebase-app.js"></script>
 	<script src="/__/firebase/8.6.1/firebase-auth.js"></script>
 	<script src="/__/firebase/8.6.1/firebase-database.js"></script>
@@ -34,50 +34,40 @@
 				</li>
 			</h1>
 			<ul class="navi-wrap">
-				<li class="navi"><a href="./index.html">Infinite Board</a></li>
-				<li class="navi"><a href="./talk.html">Talk</a></li>
+				<li class="navi"><a href="./index.html">Infinite<br> Board</a></li>
+				<li class="navi"><a href="./index-pager.html">Pager<br> Board</a></li>
 				<li class="navi bt-login"><i class="fab fa-google"></i> </li>
 				<li class="navi bt-logout"><i class="fa fa-sign-out-alt"></i> </li>
 			</ul>
 		</header>
 		<section class="title-wrapper">
-			<h2 class="title">Firebase를 활용한 한 줄 게시판 - 페이저</h2>
+			<h2 class="title">Firebase를 활용한 채팅앱</h2>
 			<h3 class="title">Firebase Auth/DataBase</h3>
 		</section>
+		<section class="list-wrapper wrapper">
+			<div class="talk-wrapper">
+				<div class="icon">
+					<img src="//via.placeholder.com/1x1/f5e9f3" alt="icon">
+				</div>
+				<div class="talk-wrap">
+					<div class="writer">booldook</div>
+					<div class="content-wrap">
+						<i class="fa fa-caret-left"></i>
+						<div class="content">잘 나오나요?</div>
+					</div>
+					<div class="date">pm 3:14</div>
+				</div>
+			</div>
+		</section>
+		<section class="gap-wrapper"></section>
 		<section class="create-wrapper wrapper">
 			<form class="create-form form-inline" onsubmit="return onSubmit(this);">
-				<input type="hidden" name="key">
-				<input type="text" name="writer" class="form-control" placeholder="작성자">
-				<input type="text" name="content" class="form-control" placeholder="한 줄 내용" autofocus>
-				<button class="bt-create btn btn-danger">등록</button>
-				<div class="btn-group" style="display: none;">
-					<button class="bt-update btn btn-success">수정</button>
-					<button class="bt-cancel btn btn-danger" type="button">취소</button>
-				</div>
+				<input type="text" name="writer" class="form-control" placeholder="작성자" readonly disabled>
+				<input type="text" name="content" class="form-control" placeholder="대화내용" autofocus>
+				<button class="bt-create btn btn-danger">전송</button>
 			</form>
 		</section>
-		<section class="list-wrapper wrapper">
-			<table class="list-tb table table-hover text-center border-bottom">
-				<thead class="thead-light">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- 데이터 넣는 곳 -->
-				</tbody>
-			</table>
-			<nav class="pager-wrapper">
-				<ul class="pagination">
-					
-				</ul>
-			</nav>
-		</section>
 	</div>
-	<script src="../js/index-pager.js"></script>
+	<script src="../js/talk.js"></script>
 </body>
 </html>

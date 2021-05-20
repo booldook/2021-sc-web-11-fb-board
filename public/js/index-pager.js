@@ -247,8 +247,8 @@ function onChangeAuth(r) {
 		$('.header-wrapper .logo i').css('display', 'none');
 		$('.create-wrapper').show();
 		$('.create-wrapper input[name="writer"]').val(user.displayName);
-		$('.bt-login').hide();
-		$('.bt-logout').show();
+		$('.bt-login').css('display', 'none');
+		$('.bt-logout').css('display', 'flex');
 	}
 	else {
 		$('.header-wrapper .photo img').attr('src', '//via.placeholder.com/1x1/333');
@@ -256,8 +256,8 @@ function onChangeAuth(r) {
 		$('.header-wrapper .logo i').css('display', 'inline-block');
 		$('.create-wrapper').hide();
 		$('.create-wrapper input[name="writer"]').val('');
-		$('.bt-login').show();
-		$('.bt-logout').hide();
+		$('.bt-login').css('display', 'flex');
+		$('.bt-logout').css('display', 'none');
 	}
 }
 
