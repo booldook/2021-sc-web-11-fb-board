@@ -23,9 +23,11 @@ function genLists() {
 		$tbody.empty();
 		totalRecord = r.numChildren();
 		var startIdx = (page - 1) * listCnt;
+		var endIdx = startIdx + listCnt > totalRecord ? totalRecord : startIdx + listCnt;
 		var temp = [];
 		r.forEach(function(v) { temp.unshift(v) });	// 순서 뒤바꿈
-		for(var i=startIdx; i<startIdx+listCnt; i++) {
+		console.log(temp);
+		for(var i=startIdx; i<endIdx; i++) {
 			genHTML(temp[i].key, temp[i].val(), 'append');
 		}
 		var totalPage = Math.ceil(totalRecord / listCnt);
