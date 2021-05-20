@@ -16,20 +16,19 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** header-wrapper *********************/
-.header-wrapper {font-family: 'Noto Serif', serif; display: flex; align-items: center; background-color: #333; color: #fff;}
-.header-wrapper .logo {font-size: 1.75em; padding-left: .5em;}
+.header-wrapper {font-family: 'Noto Serif', serif; display: flex; align-items: center; background-color: #5a5a5a; color: #fff;}
+.header-wrapper .logo {font-size: 1.75em; padding-left: .5em; display: flex; align-items: center;}
 .header-wrapper .logo::after {content: 'FIREBASE BOARD'; display: inline-block;}
-.header-wrapper .logo i {font-size: .875em;}
-.header-wrapper .navi-wrap {margin-left: auto; display: flex; align-items: center; font-family: 'NanumBarunGothic', sans-serif;}
+.header-wrapper .logo i {font-size: .875em; margin-right: .5em;}
+.header-wrapper .navi-wrap {margin-left: auto; display: flex; font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
 .header-wrapper .navi-wrap .navi.bt-logout {display: none;}
 .header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
 .header-wrapper .navi-wrap .bt-logout::after {content: 'LOGOUT'; display: inline-block;}
 
-.header-wrapper .navi-wrap .info-wrap {display: flex; align-items: center; display: none;}
-.header-wrapper .navi-wrap .info-wrap .photo {border-radius: 50%; overflow: hidden; width: 36px; margin-right: .5em;}
-.header-wrapper .navi-wrap .info-wrap .email {font-size: 1.125em; margin-right: .5em;}
+.header-wrapper .logo .info-wrap {display: flex; align-items: center; display: none; margin-right: .5em;}
+.header-wrapper .logo .info-wrap .photo {border-radius: 50%; overflow: hidden; width: 36px;}
 
 
 /********************** title-wrapper *********************/
@@ -73,7 +72,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 }
 
 @media (max-width: 767px) {
-	.header-wrapper .logo::after {content: 'FB BOARD';}
+	.header-wrapper .logo::after {content: 'FB BOARD'; letter-spacing: -2px;}
 	.header-wrapper .email {display: none;}
 	.header-wrapper .navi-wrap .bt-login::after {content: '';}
 	.header-wrapper .navi-wrap .bt-logout::after {content: '';}
@@ -85,6 +84,8 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 }
 
 @media (max-width: 575px) {
+	.title-wrapper h2.title {font-size: 1.25em;}
+	.header-wrapper .navi-wrap .navi {padding: 1em .5em;}
 	.create-wrapper form > input {margin: .25em 0;}
 	.create-wrapper form > input[name='content'] {margin: 0 0 .5em 0;}
 	.create-wrapper form > .btn {margin: auto;}

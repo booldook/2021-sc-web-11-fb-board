@@ -26,21 +26,24 @@
 <body>
 	<div class="container-wrapper">
 		<header class="header-wrapper">
-			<h1 class="logo"><i class="bi-journal-text"></i> </h1>
-			<ul class="navi-wrap">
+			<h1 class="logo">
+				<i class="bi-journal-text"></i>
 				<li class="info-wrap">
 					<div class="photo">
 						<img src="//via.placeholder.com/1x1/333" alt="포토" class="w-100">
 					</div>
-					<div class="email"></div>
 				</li>
+			</h1>
+			<ul class="navi-wrap">
+				<li class="navi"><a href="./index-pager.html">Pager Board</a></li>
+				<li class="navi"><a href="./chat.html">Chat</a></li>
 				<li class="navi bt-login"><i class="fab fa-google"></i> </li>
 				<li class="navi bt-logout"><i class="fa fa-sign-out-alt"></i> </li>
 			</ul>
 		</header>
 		<section class="title-wrapper">
-			<h2 class="title">Firebase를 활용한 한 줄 게시판</h2>
-			<h3 class="title">Firebase Auth/DataBase/Storage</h3>
+			<h2 class="title">Firebase를 활용한 한 줄 게시판 - 무한 로딩</h2>
+			<h3 class="title">Firebase Auth/DataBase, Intersection Observer</h3>
 		</section>
 		<section class="create-wrapper wrapper">
 			<form class="create-form form-inline" onsubmit="return onSubmit(this);">

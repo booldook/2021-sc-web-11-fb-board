@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="../css/bootstrap-icons.css">
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/base.css">
-	<link rel="stylesheet" href="../css/index-pager.css">
+	<link rel="stylesheet" href="../css/index.css">
 	<script src="/__/firebase/8.6.1/firebase-app.js"></script>
 	<script src="/__/firebase/8.6.1/firebase-auth.js"></script>
 	<script src="/__/firebase/8.6.1/firebase-database.js"></script>
@@ -35,13 +35,13 @@
 			</h1>
 			<ul class="navi-wrap">
 				<li class="navi"><a href="./index.html">Infinite Board</a></li>
-				<li class="navi"><a href="./chat.html">Chat</a></li>
+				<li class="navi"><a href="./index-pager.html">Pager Board</a></li>
 				<li class="navi bt-login"><i class="fab fa-google"></i> </li>
 				<li class="navi bt-logout"><i class="fa fa-sign-out-alt"></i> </li>
 			</ul>
 		</header>
 		<section class="title-wrapper">
-			<h2 class="title">Firebase를 활용한 한 줄 게시판 - 페이저</h2>
+			<h2 class="title">Firebase를 활용한 채팅앱</h2>
 			<h3 class="title">Firebase Auth/DataBase</h3>
 		</section>
 		<section class="create-wrapper wrapper">
@@ -58,7 +58,7 @@
 		</section>
 		<section class="list-wrapper wrapper">
 			<table class="list-tb table table-hover text-center border-bottom">
-				<thead class="thead-light">
+				<thead class="thead-dark">
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
@@ -71,13 +71,21 @@
 					<!-- 데이터 넣는 곳 -->
 				</tbody>
 			</table>
-			<nav class="pager-wrapper">
+			<!-- <nav class="pager-wrapper">
 				<ul class="pagination">
-					
+					<li class="page-item"><a class="page-link bi-chevron-bar-left" href="#"></a></li>
+					<li class="page-item"><a class="page-link bi-chevron-double-left" href="#"></a></li>
+					<li class="page-item"><a class="page-link bi-chevron-left" href="#"></a></li>
+					<li class="page-item active"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link bi-chevron-right" href="#"></a></li>
+					<li class="page-item"><a class="page-link bi-chevron-double-right" href="#"></a></li>
+					<li class="page-item"><a class="page-link bi-chevron-bar-right" href="#"></a></li>
 				</ul>
-			</nav>
+			</nav> -->
 		</section>
 	</div>
-	<script src="../js/index-pager.js"></script>
+	<script src="../js/index.js"></script>
 </body>
 </html>
