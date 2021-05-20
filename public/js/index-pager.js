@@ -17,67 +17,67 @@ var $pager = $('.pager-wrapper').find('.pagination');
 
 
 /*************** 사용자 함수 *****************/
-function genPager(r) {
-	var startIdx = (page - 1) * listCnt;
-	// var startIdx = (page == 1) ? null : $tbody.find('tr:last-child').data('sort');
-	ref.get().then(function(r) {
+function genLists() {
+	ref.get().then(onGetData);
+	function onGetData(r) {
 		$tbody.empty();
+		totalRecord = r.numChildren();
+		var startIdx = (page - 1) * listCnt;
 		var temp = [];
-		r.forEach(function(v) { temp.unshift(v) });
+		r.forEach(function(v) { temp.unshift(v) });	// 순서 뒤바꿈
 		for(var i=startIdx; i<startIdx+listCnt; i++) {
 			genHTML(temp[i].key, temp[i].val(), 'append');
 		}
-	});
-	if(r) totalRecord = r.numChildren();
-	var totalPage = Math.ceil(totalRecord / listCnt);
-	var startIdx = (page - 1) * listCnt;
-	var startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
-	var endPage = (startPage + pagerCnt - 1 > totalPage) ? totalPage : startPage + pagerCnt - 1;
-	var nextPage = (page + 1 > totalPage) ? totalPage : page + 1;
-	var prevPage = (page - 1 < 1) ? 1 : page - 1;
-	var nextPager = (endPage + 1 > totalPage) ? totalPage : endPage + 1;
-	var prevPager = (startPage - 1 < 1) ? 1 : startPage - 1;
-	console.log('page => ', page);
-	console.log('totalRecord => ', totalRecord);
-	console.log('startIdx => ', startIdx);
-	console.log('startPage => ', startPage);
-	console.log('endPage => ', endPage);
-	console.log('nextPage => ', nextPage);
-	console.log('prevPage => ', prevPage);
-	console.log('nextPager => ', nextPager);
-	console.log('prevPager => ', prevPager);
+		var totalPage = Math.ceil(totalRecord / listCnt);
+		var startIdx = (page - 1) * listCnt;
+		var startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
+		var endPage = (startPage + pagerCnt - 1 > totalPage) ? totalPage : startPage + pagerCnt - 1;
+		var nextPage = (page + 1 > totalPage) ? totalPage : page + 1;
+		var prevPage = (page - 1 < 1) ? 1 : page - 1;
+		var nextPager = (endPage + 1 > totalPage) ? totalPage : endPage + 1;
+		var prevPager = (startPage - 1 < 1) ? 1 : startPage - 1;
+		console.log('page => ', page);
+		console.log('totalRecord => ', totalRecord);
+		console.log('startIdx => ', startIdx);
+		console.log('startPage => ', startPage);
+		console.log('endPage => ', endPage);
+		console.log('nextPage => ', nextPage);
+		console.log('prevPage => ', prevPage);
+		console.log('nextPager => ', nextPager);
+		console.log('prevPager => ', prevPager);
 
-	var html = '';
-	html += '<li class="page-item" data-page="1">';
-	html += '<span class="page-link bi-chevron-bar-left"></span>';
-	html += '</li>';
-	html += '<li class="page-item" data-page="'+prevPager+'">';
-	html += '<span class="page-link bi-chevron-double-left"></span>';
-	html += '</li>';
-	html += '<li class="page-item" data-page="'+prevPage+'">';
-	html += '<span class="page-link bi-chevron-left"></span>';
-	html += '</li>';
-	for(var i=startPage; i<=endPage; i++) {
-		html += '<li class="page-item '+(i == page ? 'active' : '')+'" data-page="'+i+'">';
-		html += '<span class="page-link">'+i+'</span>';
+		var html = '';
+		html += '<li class="page-item" data-page="1">';
+		html += '<span class="page-link bi-chevron-bar-left"></span>';
 		html += '</li>';
+		html += '<li class="page-item" data-page="'+prevPager+'">';
+		html += '<span class="page-link bi-chevron-double-left"></span>';
+		html += '</li>';
+		html += '<li class="page-item" data-page="'+prevPage+'">';
+		html += '<span class="page-link bi-chevron-left"></span>';
+		html += '</li>';
+		for(var i=startPage; i<=endPage; i++) {
+			html += '<li class="page-item '+(i == page ? 'active' : '')+'" data-page="'+i+'">';
+			html += '<span class="page-link">'+i+'</span>';
+			html += '</li>';
+		}
+		html += '<li class="page-item" data-page="'+nextPage+'">';
+		html += '<span class="page-link bi-chevron-right"></span>';
+		html += '</li>';
+		html += '<li class="page-item" data-page="'+nextPager+'">';
+		html += '<span class="page-link bi-chevron-double-right"></span>';
+		html += '</li>';
+		html += '<li class="page-item" data-page="'+totalPage+'">';
+		html += '<span class="page-link bi-chevron-bar-right"></span>';
+		html += '</li>';
+		$pager.html(html);
+		$pager.find('.page-item').click(onPagerClick);
 	}
-	html += '<li class="page-item" data-page="'+nextPage+'">';
-	html += '<span class="page-link bi-chevron-right"></span>';
-	html += '</li>';
-	html += '<li class="page-item" data-page="'+nextPager+'">';
-	html += '<span class="page-link bi-chevron-double-right"></span>';
-	html += '</li>';
-	html += '<li class="page-item" data-page="'+totalPage+'">';
-	html += '<span class="page-link bi-chevron-bar-right"></span>';
-	html += '</li>';
-	$pager.html(html);
-	$pager.find('.page-item').click(onPagerClick);
 }
 
 function onPagerClick() {
 	page = $(this).data('page');
-	genPager();
+	genLists();
 }
 
 function genHTML(k, v, method) {
@@ -97,7 +97,7 @@ function genHTML(k, v, method) {
 	html += '</tr>';
 	var $tr = (method && method == 'append') ? $(html).appendTo($tbody) : $(html).prependTo($tbody);
 
-	var num = $tbody.find('tr').length;
+	var num = totalRecord - (page-1) * listCnt;
 	$tbody.find('tr').each(function(i) {
 		$(this).find('td:first-child').text(num--);
 	});
@@ -115,22 +115,22 @@ $tbody.empty();
 
 /*************** 이벤트 등록 *****************/
 auth.onAuthStateChanged(onChangeAuth);
-ref.get().then(genPager);
 // ref.limitToLast(listCnt).on('child_added', onAdded);
 ref.on('child_removed', onRemoved);
 ref.on('child_changed', onChanged);
-
 
 $('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
 $form.find('.bt-cancel').click(onReset);
 // $(window).resize(onResize);
 
+genLists();
+
 
 /*************** 이벤트 콜백 *****************/
 function onRemoved(r) {
 	$('#'+r.key).remove();
-	genPager();
+	genLists();
 }
 
 function onChanged(r) {
@@ -138,11 +138,6 @@ function onChanged(r) {
 	$('#'+r.key).find('.content > span').text(r.val().content);
 	$('#'+r.key).find('.readnum').text(r.val().readnum);
 	$('#'+r.key).find('.date').text(moment(r.val().updatedAt).format('YYYY-MM-DD'));
-}
-
-function onAdded(r) {
-	var k = r.key;
-	var v = r.val();
 }
 
 function onChgClick() {
@@ -222,7 +217,7 @@ function onSubmit(f) {
 			data.sort = -data.createdAt;
 			ref.push(data);
 			page = 1;
-			genPager();
+			genLists();
 		}
 		else {
 			data.updatedAt = new Date().getTime();
