@@ -1,0 +1,7 @@
+{
+	"lists": [
+		{"id": 1, "title": "내용-booldook", "writer": "booldook"},
+		{"id": 2, "title": "내용-booldok", "writer": "booldok"},
+		{"id": 3, "title": "내용2-booldook", "writer": "booldook"}
+	]
+}
