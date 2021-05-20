@@ -48,7 +48,31 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** list-wrapper *********************/
-.list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px;}
+.list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em;}
+.talk-wrapper {display: flex;}
+.talk-wrapper .left {display: inline-block;}
+.talk-wrapper .right {display: none;}
+.talk-wrapper .icon {border-radius: 50%; overflow: hidden; width: 36px; height: 36px;}
+.talk-wrapper .talk-wrap {padding-left: .5em; margin-bottom: .5em; flex-grow: 1; max-width: 90%;}
+.talk-wrapper .writer {padding: .25em .25em .25em .5em; font-size: .875em;}
+.talk-wrapper .date {padding: .325em .325em .325em .625em; font-size: .75em; color: #555; align-self: flex-end; flex-shrink: 0;}
+.talk-wrapper .content-wrap {display: flex;}
+.talk-wrapper .content-wrap i {color: #fff;}
+.talk-wrapper .content-wrap .content {background-color: #fff; padding: .5em; border-radius: 4px;}
+
+.talk-wrapper.me {justify-content: flex-end;}
+.talk-wrapper.me .left {display: none;}
+.talk-wrapper.me .right {display: inline-block;}
+.talk-wrapper.me .writer {text-align: right; padding: .25em .5em .25em .25em;}
+.talk-wrapper.me .content-wrap {order: 2; justify-content: flex-end;}
+.talk-wrapper.me .date {order: 1;}
+.talk-wrapper.me .content {order: 2;}
+.talk-wrapper.me i {order: 3;}
+.talk-wrapper.me .icon {display: none;}
+
+
+
+
 
 .gap-wrapper {height: .5em;}
 
