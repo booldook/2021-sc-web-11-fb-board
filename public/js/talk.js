@@ -15,6 +15,9 @@ function onChangeAuth(r) {
 		$('.header-wrapper .info-wrap').css('display', 'flex');
 		$('.header-wrapper .logo i').css('display', 'none');
 		$('.create-wrapper').show();
+		$('.list-wrapper').show();
+		$('.gap-wrapper').css('flex-grow', 0);
+		$('.gap-wrapper .gap-wrap').css('display', 'none');
 		$('.create-wrapper input[name="writer"]').val(user.displayName);
 		$('.bt-login').css('display', 'none');
 		$('.bt-logout').css('display', 'flex');
@@ -24,6 +27,9 @@ function onChangeAuth(r) {
 		$('.header-wrapper .info-wrap').css('display', 'none');
 		$('.header-wrapper .logo i').css('display', 'inline-block');
 		$('.create-wrapper').hide();
+		$('.list-wrapper').hide();
+		$('.gap-wrapper').css('flex-grow', 1);
+		$('.gap-wrapper .gap-wrap').css('display', 'flex');
 		$('.create-wrapper input[name="writer"]').val('');
 		$('.bt-login').css('display', 'flex');
 		$('.bt-logout').css('display', 'none');

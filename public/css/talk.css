@@ -25,6 +25,8 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer; flex-shrink: 1;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
 .header-wrapper .navi-wrap .navi.bt-login {align-items: center;}
+.header-wrapper .navi-wrap .navi.bt-login i {margin-right: .25em;}
+.header-wrapper .navi-wrap .navi.bt-logout i {margin-right: .25em;}
 .header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center;}
 .header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
 .header-wrapper .navi-wrap .bt-logout::after {content: 'LOGOUT'; display: inline-block;}
@@ -48,7 +50,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** list-wrapper *********************/
-.list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em;}
+.list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em; display: none;}
 .talk-wrapper {display: flex;}
 .talk-wrapper .left {display: inline-block;}
 .talk-wrapper .right {display: none;}
@@ -74,7 +76,11 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 
-.gap-wrapper {height: .5em;}
+.gap-wrapper {padding: .25em 0; flex-grow: 1;}
+.gap-wrapper .gap-wrap {width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;}
+.gap-wrapper .gap-wrap > .bt-login {align-items: center;}
+.gap-wrapper .gap-wrap > .bt-login > i {margin-right: .5em;}
+.gap-wrapper .gap-wrap > div {padding: 1em 0 3em 0;}
 
 
 /********************** 반응형 설정 *********************/
