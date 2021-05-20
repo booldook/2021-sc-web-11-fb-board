@@ -12,6 +12,7 @@ function onChangeAuth(r) {
 	user = r;
 	if(user) {
 		$('.header-wrapper .photo img').attr('src', user.photoURL);
+		$('.create-wrapper img').attr('src', user.photoURL);
 		$('.header-wrapper .info-wrap').css('display', 'flex');
 		$('.header-wrapper .logo i').css('display', 'none');
 		$('.create-wrapper').show();
@@ -24,6 +25,7 @@ function onChangeAuth(r) {
 	}
 	else {
 		$('.header-wrapper .photo img').attr('src', '//via.placeholder.com/1x1/333');
+		$('.create-wrapper img').attr('src', '//via.placeholder.com/1x1/fff');
 		$('.header-wrapper .info-wrap').css('display', 'none');
 		$('.header-wrapper .logo i').css('display', 'inline-block');
 		$('.create-wrapper').hide();
