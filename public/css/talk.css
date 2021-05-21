@@ -42,10 +42,11 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** chat-wrapper *********************/
-.chat-wrapper {display: none; flex-direction: column; justify-content: stretch; align-items: center; flex-grow: 1; width: 100%;}
+.chat-wrapper {display: none; flex-direction: column; align-items: center; width: 100%;  overflow: hidden; justify-content: stretch;}
 
 
 /********************** create-wrapper *********************/
+.chat-wrapper .bt-out-wrap {align-self: flex-end; margin-bottom: .5em;}
 .chat-wrapper .create-wrapper {padding: .5em 0; width: 96%;}
 .chat-wrapper .create-wrapper form {display: flex; align-items: center; flex-wrap: nowrap;}
 .chat-wrapper .create-wrapper .icon {border-radius: 50%; overflow: hidden; width: 36px; height: 36px; border: 1px solid #eee; flex-shrink: 0;} 
@@ -56,7 +57,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** list-wrapper *********************/
-.chat-wrapper .list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em; overflow-y: auto;}
+.chat-wrapper .list-wrapper {width: 96%; flex-grow: 1; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em; overflow-y: auto;}
 .chat-wrapper .list-wrapper .line {display: flex; align-items: center; margin: 2em 0; color: #555;}
 .chat-wrapper .list-wrapper .line > span {padding: 0 .5em;}
 .chat-wrapper .list-wrapper .line::before {display: block; content: ''; height: 2px; background-color: #999; flex-grow: 1;}
