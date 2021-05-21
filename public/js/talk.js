@@ -145,36 +145,37 @@ function onRoomAdded(v) {
 function genRoom(k, v) {
 	var html = '';
 	html += '<div class="room-wrap">';
-	html += '<h3 class="name">';
-	if(user.uid === v.uid)
-		html += '<input type="text" name="name" class="form-control" placeholder="방제목" value="'+v.name+'">';
-	else 
-		html += v.name ;
-	html += '</h3>';
-	html += '<h4 class="writer form-inline">';
 	if(user.uid === v.uid) {
-		html += '방장이름: &nbsp;';
-		html += '<input type="text" name="writer" class="form-control" placeholder="방장" value="'+v.writer+'">'; 
+			html += '<form class="create" onsubmit="return onRoomSubmit(this);">';
+			html += '<div class="name">';
+			html += '<input type="text" class="form-control" name="name" placeholder="방제목" value="'+v.name+'">';
+			html += '</div>';
+			html += '<div class="writer form-inline">';
+			html += '<input type="text" class="form-control" name="writer" placeholder="방장이름" value="'+v.writer+'">';
+			html += '<input type="password" class="form-control" name="roompw" placeholder="비밀번호">';
+			html += '<div class="text-danger">';
+			html += '* 비밀번호 입력시 비밀방이 됩니다<br>';
+			html += '* 미 입력시 오픈채팅방';
+			html += '</div>';
+			html += '</div>';
+			html += '<div class="btn-wrap">';
+			html += '<button class="btn btn-sm btn-success">';
+			html += '<i class="bt-update fa fa-save"></i> 수정';
+			html += '</button> ';
+			html += '<button class="btn btn-sm btn-danger">';
+			html += '<i class="bt-update fa fa-times"></i> 삭제';
+			html += '</button>';
+			html += '</div>';
+			html += '</form>';
 	}
-	else
-		html += v.writer;
-	html += '</h4>';
-	html += '<div class="roompw form-inline">';
-	if(user.uid === v.uid) {
-		html += '패스워드: &nbsp;';
-		html += '<input type="password" name="roompw" class="form-control w-50" placeholder="비밀번호">';
-	}
-	html += '</div>';
-	html += '<div class="date">개설: '+moment(v.createdAt).format('YYYY-MM-DD')+'</div>';
-	if(user.uid === v.uid) {
-		html += '<div class="btn-wrap">';
-		html += '<button class="btn btn-sm btn-primary"><i class="bt-update fa fa-save"></i></button> ';
-		html += '<button class="btn btn-sm btn-danger"><i class="bt-delete fa fa-times"></i></button>';
-		html += '</div>';
+	else {
+		html += '<h3 class="name">'+v.name+'</h3>';
+		html += '<h4 class="writer">'+v.writer+'</h4>';
+		html += '<div class="date mb-4">개설: '+moment(v.createdAt).format('YYYY-MM-DD')+'</div>';
 	}
 	html += '<div class="enter-wrap form-inline">';
 	if(v.roompw) 
-		html += '<input type="password" name="roompw" class="form-control" placeholder="비밀번호">';
+		html += '<input type="password" name="roompw" class="form-control" placeholder="비밀번호">&nbsp;';
 	html += '<button type="button" class="btn btn-primary">방 입장</button>';
 	html += '<div>';
 	html += '</div>';

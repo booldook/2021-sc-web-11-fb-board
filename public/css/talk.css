@@ -88,18 +88,20 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 /********************** room-wrapper *********************/
 .room-wrapper {display: none; flex-grow: 1; width: 100%; border: 1px solid red; padding: 1em; align-items: stretch; flex-wrap: wrap; align-content: flex-start; overflow-y: auto;}
+.room-wrapper ::placeholder {color: #ddd;}
 .room-wrapper .room-wrap {width: 23%; margin: 1%; padding: 1em; border: 3px solid pink; background-color: #fdebee; border-radius: 10px;}
 .room-wrapper .room-wrap h3.name {font-size: 1.325em; font-weight: bold; margin-bottom: .5em; text-decoration: underline;}
 .room-wrapper .room-wrap h4.writer {font-size: 1.125em; margin-bottom: .5em;}
 .room-wrapper .room-wrap .date {color: #777; margin-bottom: .5em;}
 .room-wrapper .room-wrap .btn {padding: 3px 8px 1px 8px;}
+.room-wrapper .room-wrap .enter-wrap {justify-content: center; margin-top: .5em; padding-top: 1em; border-top: 2px solid #dfc1da;}
 
-.room-wrapper .room-wrap.create input {padding: .125em .5em; font-size: .875em}
-.room-wrapper .room-wrap.create > div {margin-bottom: .25em;}
-.room-wrapper .room-wrap.create > div.writer {display: flex; justify-content: space-between;}
-.room-wrapper .room-wrap.create > div.writer > input {width: 49%;}
-.room-wrapper .room-wrap.create > div > .text-danger {margin: .25em 0 .5em 0;}
-.room-wrapper .room-wrap.create > div.btn-wrap {text-align: center;}
+.room-wrapper .create input {padding: .125em .5em; font-size: .875em}
+.room-wrapper .create > div {margin-bottom: .25em;}
+.room-wrapper .create > div.writer {display: flex; justify-content: space-between;}
+.room-wrapper .create > div > .text-danger {margin: .25em 0 .5em 0;}
+.room-wrapper .create > div.btn-wrap {text-align: center;}
+.room-wrapper .form-inline input {width: 49%;}
 
 
 /********************** login-wrapper *********************/
