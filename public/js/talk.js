@@ -125,6 +125,7 @@ function onRoomSubmit(f) {
 	}
 	var data = {
 		rid: uuidv4(),
+		uid: user.uid,
 		name: f.name.value,
 		writer: f.writer.value,
 		roompw: f.roompw.value,
@@ -144,13 +145,38 @@ function onRoomAdded(v) {
 function genRoom(k, v) {
 	var html = '';
 	html += '<div class="room-wrap">';
-	html += '<h3 class="name">'+v.name+'</h3>';
-	html += '<h4 class="writer">방장: '+v.writer+'</h4>';
-	html += '<div class="date">개설: '+moment(v.createdAt).format('YYYY-MM-DD')+'</div>';
-	html += '<div class="btn-wrap">';
-	html += '<button class="btn btn-sm btn-primary"><i class="bt-update fa fa-save"></i></button>';
-	html += '<button class="btn btn-sm btn-danger"><i class="bt-delete fa fa-times"></i></button>';
+	html += '<h3 class="name">';
+	if(user.uid === v.uid)
+		html += '<input type="text" name="name" class="form-control" placeholder="방제목" value="'+v.name+'">';
+	else 
+		html += v.name ;
+	html += '</h3>';
+	html += '<h4 class="writer form-inline">';
+	if(user.uid === v.uid) {
+		html += '방장이름: &nbsp;';
+		html += '<input type="text" name="writer" class="form-control" placeholder="방장" value="'+v.writer+'">'; 
+	}
+	else
+		html += v.writer;
+	html += '</h4>';
+	html += '<div class="roompw form-inline">';
+	if(user.uid === v.uid) {
+		html += '패스워드: &nbsp;';
+		html += '<input type="password" name="roompw" class="form-control w-50" placeholder="비밀번호">';
+	}
 	html += '</div>';
+	html += '<div class="date">개설: '+moment(v.createdAt).format('YYYY-MM-DD')+'</div>';
+	if(user.uid === v.uid) {
+		html += '<div class="btn-wrap">';
+		html += '<button class="btn btn-sm btn-primary"><i class="bt-update fa fa-save"></i></button> ';
+		html += '<button class="btn btn-sm btn-danger"><i class="bt-delete fa fa-times"></i></button>';
+		html += '</div>';
+	}
+	html += '<div class="enter-wrap form-inline">';
+	if(v.roompw) 
+		html += '<input type="password" name="roompw" class="form-control" placeholder="비밀번호">';
+	html += '<button type="button" class="btn btn-primary">방 입장</button>';
+	html += '<div>';
 	html += '</div>';
 	$('.room-wrap.create').after(html);
 }
