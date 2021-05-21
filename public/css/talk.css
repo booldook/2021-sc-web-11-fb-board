@@ -87,7 +87,9 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** room-wrapper *********************/
-.room-wrapper {display: none; flex-direction: column; justify-content: stretch; align-items: center; flex-grow: 1; width: 100%; border: 1px solid red;}
+.room-wrapper {display: none; flex-grow: 1; width: 100%; border: 1px solid red; padding: 1em; align-items: flex-start; flex-wrap: wrap; align-content: flex-start; overflow-y: auto;}
+.room-wrapper .room-wrap {width: 23%; margin: 1%; padding: 1em; border: 3px solid pink; background-color: #fdebee; border-radius: 10px;}
+.room-wrapper .room-wrap h3.name {font-size: 1.325em; font-weight: bold;}
 
 
 /********************** login-wrapper *********************/
@@ -105,6 +107,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 @media (max-width: 1199px) {
 	.wrapper {margin: 0 1em;}
 	.chat-wrapper .talk-wrapper .talk-wrap {max-width: 50%;}
+	.room-wrapper .room-wrap {width: 31.3333%;}
 }
 
 @media (max-width: 991px) {
@@ -117,6 +120,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 	.header-wrapper .navi-wrap .bt-login::after {content: '';}
 	.header-wrapper .navi-wrap .bt-logout::after {content: '';}
 	.chat-wrapper .talk-wrapper .talk-wrap {max-width: 90%;}
+	.room-wrapper .room-wrap {width: 48%;}
 }
 
 @media (max-width: 575px) {
@@ -128,4 +132,5 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 	.header-wrapper br {display: block;}
 	.chat-wrapper .create-wrapper form > .btn {margin: auto;}
 	.chat-wrapper .talk-wrapper .talk-wrap {max-width: 100%;}
+	.room-wrapper .room-wrap {width: 98%;}
 }
