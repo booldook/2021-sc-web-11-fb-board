@@ -59,6 +59,7 @@ function onAdded(r) {
 function genHTML(k, v) {
 	var content = v.content.replace(URLPattern, URLReplace);
 	var html = '';
+	html += '<div class="line"><span>2021년 5월 20일 목요일<span></div>';
 	html += '<div class="talk-wrapper '+ (v.uid === user.uid ? 'me' : '')+'" id="'+k+'">';
 	if(v.uid !== user.uid) {
 		html += '<div class="icon">';
