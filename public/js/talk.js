@@ -2,14 +2,15 @@
 var auth = firebase.auth();	//firebase의 auth(인증)모듈을 불러온다.
 var googleAuth = new firebase.auth.GoogleAuthProvider(); //구글로그인 모듈을 불러온다.
 var db = firebase.database();
-var ref = db.ref('root/talk');
+var talkRef = db.ref('root/talk');
+var roomRef = db.ref('root/room');
 
 var $listWrapper = $('.list-wrapper');
 
 var yoil = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 var prevDate = '';
 
-/*************** 인증 *****************/
+/*************** Auth *****************/
 auth.onAuthStateChanged(onChangeAuth);
 $('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
@@ -22,6 +23,7 @@ function onChangeAuth(r) {
 		$('.header-wrapper .logo i').css('display', 'none');
 		$('.room-wrapper').css('display', 'flex');
 		$('.login-wrapper').css('display', 'none');
+		$('.room-wrapper').find('input[name="writer"]').val(user.displayName);
 		$('.bt-login').css('display', 'none');
 		$('.bt-logout').css('display', 'flex');
 		
@@ -33,6 +35,7 @@ function onChangeAuth(r) {
 		$('.header-wrapper .info-wrap').css('display', 'none');
 		$('.header-wrapper .logo i').css('display', 'inline-block');
 		$('.room-wrapper').css('display', 'none');
+		$('.room-wrapper').find('input[name="writer"]').val('');
 		$('.login-wrapper').css('display', 'flex');
 		$('.bt-login').css('display', 'flex');
 		$('.bt-logout').css('display', 'none');
@@ -49,7 +52,7 @@ function onLoginGoogle() {
 	auth.signInWithPopup(googleAuth);
 }
 
-/*************** 데이터  *****************/
+/*************** talk *****************/
 ref.orderByChild('createdAt').on('child_added', onAdded);
 
 function onAdded(r) {
@@ -101,3 +104,37 @@ function onSubmit(f) {
 	$(f.content).focus();
 	return false;
 }
+
+/******************** room ***********************/
+function onRoomSubmit(f) {
+	if(f.name.value.trim() === '') {
+		alert('방제목을 입력하셔야 합니다.');
+		r.name.focus();
+		return false;
+	}
+	if(f.writer.value.trim() === '') {
+		alert('방장을 입력하셔야 합니다.');
+		r.writer.focus();
+		return false;
+	}
+	var data = {
+		rid: 'sadfsadfsadf',
+		name: f.name.value,
+		writer: f.writer.value,
+		roompw: f.roompw.value,
+		createdAt: new Date().getTime(),
+	}
+	roomRef.push();
+}
+
+
+var html = '';
+html += '<div class="room-wrap">';
+html += '<h3 class="name">코딩방</h3>';
+html += '<h4 class="writer">방장: booldook</h4>';
+html += '<div class="date">개설: 2021-05-21</div>';
+html += '<div class="btn-wrap">';
+html += '<button class="btn btn-sm btn-primary"><i class="bt-update fa fa-save"></i></button>';
+html += '<button class="btn btn-sm btn-danger"><i class="bt-delete fa fa-times"></i></button>';
+html += '</div>';
+html += '</div>';
