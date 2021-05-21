@@ -52,14 +52,20 @@ function onLoginGoogle() {
 	auth.signInWithPopup(googleAuth);
 }
 
-/*************** talk *****************/
-ref.orderByChild('createdAt').on('child_added', onAdded);
 
-function onAdded(r) {
-	genHTML(r.key, r.val());
+
+/*************** firebase event *****************/
+talkRef.on('child_added', onTalkAdded);
+roomRef.on('child_added', onRoomAdded);
+
+
+
+/*************** talk *****************/
+function onTalkAdded(r) {
+	genTalk(r.key, r.val());
 }
 
-function genHTML(k, v) {
+function genTalk(k, v) {
 	var content = v.content.replace(URLPattern, URLReplace);
 	var html = '';
 	if(prevDate !== moment(v.createdAt).format('YYYYMMDD')) {
@@ -109,32 +115,42 @@ function onSubmit(f) {
 function onRoomSubmit(f) {
 	if(f.name.value.trim() === '') {
 		alert('방제목을 입력하셔야 합니다.');
-		r.name.focus();
+		f.name.focus();
 		return false;
 	}
 	if(f.writer.value.trim() === '') {
 		alert('방장을 입력하셔야 합니다.');
-		r.writer.focus();
+		f.writer.focus();
 		return false;
 	}
 	var data = {
-		rid: 'sadfsadfsadf',
+		rid: uuidv4(),
 		name: f.name.value,
 		writer: f.writer.value,
 		roompw: f.roompw.value,
 		createdAt: new Date().getTime(),
 	}
-	roomRef.push();
+	roomRef.push(data);
+	f.name.value = '';
+	f.writer.value = '';
+	f.roompw.value = '';
+	return false;
 }
 
+function onRoomAdded(v) {
+	genRoom(v.key, v.val());
+}
 
-var html = '';
-html += '<div class="room-wrap">';
-html += '<h3 class="name">코딩방</h3>';
-html += '<h4 class="writer">방장: booldook</h4>';
-html += '<div class="date">개설: 2021-05-21</div>';
-html += '<div class="btn-wrap">';
-html += '<button class="btn btn-sm btn-primary"><i class="bt-update fa fa-save"></i></button>';
-html += '<button class="btn btn-sm btn-danger"><i class="bt-delete fa fa-times"></i></button>';
-html += '</div>';
-html += '</div>';
+function genRoom(k, v) {
+	var html = '';
+	html += '<div class="room-wrap">';
+	html += '<h3 class="name">'+v.name+'</h3>';
+	html += '<h4 class="writer">방장: '+v.writer+'</h4>';
+	html += '<div class="date">개설: '+moment(v.createdAt).format('YYYY-MM-DD')+'</div>';
+	html += '<div class="btn-wrap">';
+	html += '<button class="btn btn-sm btn-primary"><i class="bt-update fa fa-save"></i></button>';
+	html += '<button class="btn btn-sm btn-danger"><i class="bt-delete fa fa-times"></i></button>';
+	html += '</div>';
+	html += '</div>';
+	$('.room-wrap.create').after(html);
+}
