@@ -143,6 +143,13 @@ function onRoomSubmit(f) {
 	return false;
 }
 
+function onRoomDelete(el) {
+	if(confirm('정말로 삭제하시겠습니까? 삭제하시면 채팅내용도 삭제됩니다.')) {
+		var key = el.form.key.value;
+		roomRef.child(key).remove(); // farebase에서 삭제
+	}
+}
+
 function onRoomAdded(v) {
 	genRoom(v.key, v.val());
 }
@@ -153,7 +160,7 @@ function onRoomChanged(v) {
 }
 
 function onRoomRemoved(v) {
-
+	$('#'+v.key).remove(); // jQuery remove()
 }
 
 function genRoom(k, v, isChange) {
@@ -177,7 +184,7 @@ function genRoom(k, v, isChange) {
 			html += '<button class="btn btn-sm btn-success">';
 			html += '<i class="bt-update fa fa-save"></i> 수정';
 			html += '</button> ';
-			html += '<button type="button" class="btn btn-sm btn-danger">';
+			html += '<button type="button" class="btn btn-sm btn-danger" onclick="onRoomDelete(this);">';
 			html += '<i class="bt-update fa fa-times"></i> 삭제';
 			html += '</button>';
 			html += '</div>';
