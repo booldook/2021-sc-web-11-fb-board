@@ -57,6 +57,7 @@ function onAdded(r) {
 }
 
 function genHTML(k, v) {
+	var content = v.content.replace(URLPattern, URLReplace);
 	var html = '';
 	html += '<div class="talk-wrapper '+ (v.uid === user.uid ? 'me' : '')+'" id="'+k+'">';
 	if(v.uid !== user.uid) {
@@ -69,7 +70,7 @@ function genHTML(k, v) {
 	html += '<div class="content-wrap">';
 	html += '<i class="fa fa-caret-left left"></i>';
 	html += '<i class="fa fa-caret-right right"></i>';
-	html += '<div class="content">'+v.content+'</div>';
+	html += '<div class="content">'+content+'</div>';
 	html += '<div class="date">'+moment(v.createdAt).format('a h:m')+'</div>';
 	html += '</div>';
 	html += '</div>';

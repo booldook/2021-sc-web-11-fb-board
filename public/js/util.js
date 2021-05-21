@@ -24,14 +24,27 @@ function validPass(v) {
 
 // 핸드폰번호 정규식
 function validMobile(v) {
-	var mobileRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
-	return (v.match(mobileRegExp) !== null) ? true : false
+	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+	return (v.match(regExp) !== null) ? true : false
 }
 
 //일반 전화번호 정규식
 function validPhone(v) {
-	var phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	return (v.match(phoneRegExp) !== null) ? true : false
+	var regExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	return (v.match(regExp) !== null) ? true : false
+}
+
+//링크 정규식
+var URLPattern = /(((http(s)?:\/\/)\S+(\.[^(\n|\t|\s,)]+)+)|((http(s)?:\/\/)?(([a-zA-z\-_]+[0-9]*)|([0-9]*[a-zA-z\-_]+)){2,}(\.[^(\n|\t|\s,)]+)+))+/gi;
+var emailPattern = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g;
+function emailReplace(_email){
+	return '<a href="mailto:' + _email + '" target="_blank">'+ _email +'</a>'
+}
+function URLReplace(_url){
+	return '<a href="' + _url + '" target="_blank">'+ _url +'</a>'
+}
+function validLink(v) {
+	return (v.match(URLPattern) !== null) ? true : false
 }
 
 

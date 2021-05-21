@@ -62,6 +62,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .talk-wrapper .content-wrap {display: flex;}
 .talk-wrapper .content-wrap i {color: #fff;}
 .talk-wrapper .content-wrap .content {background-color: #fff; padding: .5em; border-radius: 4px; line-height: 1.25;}
+.talk-wrapper .content-wrap .content a {color: blue; text-decoration: underline;}
 
 .talk-wrapper.me {justify-content: flex-end;}
 .talk-wrapper.me .left {display: none;}
