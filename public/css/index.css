@@ -23,8 +23,8 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .navi-wrap .navi {cursor: pointer;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
 .header-wrapper .navi-wrap .navi a {display: inline-block; padding: 1.5em;}
-.header-wrapper .navi-wrap .navi.bt-login {align-items: center;}
-.header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center;}
+.header-wrapper .navi-wrap .navi.bt-login {align-items: center; padding: 1.5em;}
+.header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center; padding: 1.5em;}
 .header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
 .header-wrapper .navi-wrap .bt-logout::after {content: 'LOGOUT'; display: inline-block;}
 

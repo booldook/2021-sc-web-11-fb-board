@@ -25,10 +25,10 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .navi-wrap .navi {cursor: pointer; flex-shrink: 1;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
 .header-wrapper .navi-wrap .navi a {display: inline-block; padding: 1.5em;}
-.header-wrapper .navi-wrap .navi.bt-login {align-items: center;}
+.header-wrapper .navi-wrap .navi.bt-login {align-items: center; padding: 1.5em;}
 .header-wrapper .navi-wrap .navi.bt-login i {margin-right: .25em;}
 .header-wrapper .navi-wrap .navi.bt-logout i {margin-right: .25em;}
-.header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center;}
+.header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center; padding: 1.5em;}
 .header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
 .header-wrapper .navi-wrap .bt-logout::after {content: 'LOGOUT'; display: inline-block;}
 
