@@ -22,8 +22,9 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .logo::after {content: 'FIREBASE TALK'; display: inline-block;}
 .header-wrapper .logo i {font-size: .875em; margin-right: .5em;}
 .header-wrapper .navi-wrap {margin-left: auto; display: flex; font-family: 'NanumBarunGothic', sans-serif;}
-.header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer; flex-shrink: 1;}
+.header-wrapper .navi-wrap .navi {cursor: pointer; flex-shrink: 1;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
+.header-wrapper .navi-wrap .navi a {display: inline-block; padding: 1.5em;}
 .header-wrapper .navi-wrap .navi.bt-login {align-items: center;}
 .header-wrapper .navi-wrap .navi.bt-login i {margin-right: .25em;}
 .header-wrapper .navi-wrap .navi.bt-logout i {margin-right: .25em;}

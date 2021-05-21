@@ -20,8 +20,9 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .header-wrapper .logo::after {content: 'FIREBASE BOARD'; display: inline-block;}
 .header-wrapper .logo i {font-size: .875em; margin-right: .5em;}
 .header-wrapper .navi-wrap {margin-left: auto; display: flex; font-family: 'NanumBarunGothic', sans-serif;}
-.header-wrapper .navi-wrap .navi {padding: 1.5em; cursor: pointer;}
+.header-wrapper .navi-wrap .navi {cursor: pointer;}
 .header-wrapper .navi-wrap .navi:hover {background-color: crimson;}
+.header-wrapper .navi-wrap .navi a {display: inline-block; padding: 1.5em;}
 .header-wrapper .navi-wrap .navi.bt-login {align-items: center;}
 .header-wrapper .navi-wrap .navi.bt-logout {display: none; align-items: center;}
 .header-wrapper .navi-wrap .bt-login::after {content: 'LOGIN'; display: inline-block;}
