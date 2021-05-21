@@ -43,7 +43,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 /********************** create-wrapper *********************/
 .create-wrapper {padding: .5em 0; display: none; width: 96%;}
 .create-wrapper form {display: flex; align-items: center; flex-wrap: nowrap;}
-.create-wrapper .icon {border-radius: 50%; overflow: hidden; width: 36px; height: 36px; border: 1px solid #eee;}
+.create-wrapper .icon {border-radius: 50%; overflow: hidden; width: 36px; height: 36px; border: 1px solid #eee; flex-shrink: 0;} 
 .create-wrapper form > input[name='content'] {flex-grow: 1; margin: .5em; min-width: 30%;}
 .create-wrapper form .btn {padding: .375rem 1.5rem; flex-shrink: 0;}
 .create-wrapper form input {transition: all .5s;}
