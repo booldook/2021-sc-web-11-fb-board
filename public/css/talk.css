@@ -51,7 +51,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** list-wrapper *********************/
-.list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em; display: none;}
+.list-wrapper {flex-grow: 1; width: 96%; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em; display: none; overflow-y: auto;}
 .talk-wrapper {display: flex;}
 .talk-wrapper .left {display: inline-block;}
 .talk-wrapper .right {display: none;}

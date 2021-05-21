@@ -1,13 +1,16 @@
 /*************** 글로벌 설정 *****************/
 var auth = firebase.auth();	//firebase의 auth(인증)모듈을 불러온다.
 var googleAuth = new firebase.auth.GoogleAuthProvider(); //구글로그인 모듈을 불러온다.
+var db = firebase.database();
+var ref = db.ref('root/talk');
 
-/*************** 이벤트 등록 *****************/
+var $listWrapper = $('.list-wrapper');
+
+/*************** 인증 *****************/
 auth.onAuthStateChanged(onChangeAuth);
 $('.bt-login').click(onLoginGoogle);
 $('.bt-logout').click(onLogOut);
 
-/*************** 이벤트 콜백 *****************/
 function onChangeAuth(r) {
 	user = r;
 	if(user) {
@@ -46,4 +49,47 @@ function onLoginGoogle() {
 	auth.signInWithPopup(googleAuth);
 }
 
+/*************** 데이터  *****************/
+ref.on('child_added', onAdded);
 
+function onAdded(r) {
+	genHTML(r.key, r.val());
+}
+
+function genHTML(k, v) {
+	var html = '';
+	html += '<div class="talk-wrapper '+ (v.uid === user.uid ? 'me' : '')+'" id="'+k+'">';
+	if(v.uid !== user.uid) {
+		html += '<div class="icon">';
+		html += '<img src="'+v.photo+'" alt="icon" class="w-100">';
+		html += '</div>';
+	}
+	html += '<div class="talk-wrap">';
+	html += '<div class="writer">'+v.name+'</div>';
+	html += '<div class="content-wrap">';
+	html += '<i class="fa fa-caret-left left"></i>';
+	html += '<i class="fa fa-caret-right right"></i>';
+	html += '<div class="content">'+v.content+'</div>';
+	html += '<div class="date">'+moment(v.createdAt).format('a h:m')+'</div>';
+	html += '</div>';
+	html += '</div>';
+	html += '</div>';
+	$listWrapper.append(html);
+	$listWrapper.scrollTop($listWrapper[0].scrollHeight);
+}
+
+function onSubmit(f) {
+	if($(f.content).val().trim() !== '') {
+		var data = {
+			uid: user.uid,
+			photo: user.photoURL,
+			name: user.displayName,
+			content: $(f.content).val(),
+			createdAt: new Date().getTime()
+		}
+		ref.push(data);
+		$(f.content).val('');
+	}
+	$(f.content).focus();
+	return false;
+}
