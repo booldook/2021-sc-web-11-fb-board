@@ -6,6 +6,9 @@ var ref = db.ref('root/talk');
 
 var $listWrapper = $('.list-wrapper');
 
+var yoil = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+var prevDate = '';
+
 /*************** 인증 *****************/
 auth.onAuthStateChanged(onChangeAuth);
 $('.bt-login').click(onLoginGoogle);
@@ -50,7 +53,7 @@ function onLoginGoogle() {
 }
 
 /*************** 데이터  *****************/
-ref.on('child_added', onAdded);
+ref.orderByChild('createdAt').on('child_added', onAdded);
 
 function onAdded(r) {
 	genHTML(r.key, r.val());
@@ -59,7 +62,12 @@ function onAdded(r) {
 function genHTML(k, v) {
 	var content = v.content.replace(URLPattern, URLReplace);
 	var html = '';
-	html += '<div class="line"><span>2021년 5월 20일 목요일<span></div>';
+	if(prevDate !== moment(v.createdAt).format('YYYYMMDD')) {
+		prevDate = moment(v.createdAt).format('YYYYMMDD'); //20210520
+		html += '<div class="line"><span>';
+		html += moment(v.createdAt).format('YYYY년 M월 D일 ') + yoil[new Date(v.createdAt).getDay()]
+		html += '<span></div>';
+	}
 	html += '<div class="talk-wrapper '+ (v.uid === user.uid ? 'me' : '')+'" id="'+k+'">';
 	if(v.uid !== user.uid) {
 		html += '<div class="icon">';
@@ -82,6 +90,7 @@ function genHTML(k, v) {
 
 function onSubmit(f) {
 	if($(f.content).val().trim() !== '') {
+		console.log(new Date());
 		var data = {
 			uid: user.uid,
 			photo: user.photoURL,
