@@ -45,25 +45,27 @@
 			<h2 class="title">Firebase를 활용한 채팅앱</h2>
 			<h3 class="title">Firebase Auth/DataBase</h3>
 		</section>
-		<section class="list-wrapper wrapper">
-			
+		<section class="login-wrapper">
+			<button class="btn btn-danger bt-login">
+				<i class="fab fa-google"></i> 로그인
+			</button>
+			<div>로그인 후 이용가능 합니다.</div>
 		</section>
-		<section class="gap-wrapper">
-			<div class="gap-wrap">
-				<button class="btn btn-danger bt-login">
-					<i class="fab fa-google"></i> 로그인
-				</button>
-				<div>로그인 후 이용가능 합니다.</div>
-			</div>
+		<section class="room-wrapper">
+			<h1>ROOM wrapper</h1>
 		</section>
-		<section class="create-wrapper wrapper">
-			<form class="create-form form-inline" onsubmit="return onSubmit(this);">
-				<div class="icon">
-					<img src="//via.placeholder.com/1x1/fff" alt="icon" class="w-100">
-				</div>
-				<input type="text" name="content" class="form-control" placeholder="대화내용" autofocus>
-				<button class="bt-create btn btn-danger">전송</button>
-			</form>
+		<section class="chat-wrapper">
+			<section class="list-wrapper wrapper"></section>
+			<section class="gap-wrapper"></section>
+			<section class="create-wrapper wrapper">
+				<form class="create-form form-inline" onsubmit="return onSubmit(this);">
+					<div class="icon">
+						<img src="//via.placeholder.com/1x1/fff" alt="icon" class="w-100">
+					</div>
+					<input type="text" name="content" class="form-control" placeholder="대화내용" autofocus>
+					<button class="bt-create btn btn-danger">전송</button>
+				</form>
+			</section>
 		</section>
 	</div>
 	<script src="../js/talk.js"></script>
