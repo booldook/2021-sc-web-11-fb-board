@@ -49,8 +49,6 @@ function onLoginGoogle() {
 	auth.signInWithPopup(googleAuth);
 }
 
-
-
 /*************** firebase event *****************/
 roomRef.on('child_added', onRoomAdded);
 roomRef.on('child_changed', onRoomChanged);

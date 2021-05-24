@@ -55,6 +55,12 @@
 		<section class="room-wrapper">
 			<form class="room-wrap create" onsubmit="return onRoomSubmit(this);">
 				<h3 class="title">신규 방 개설</h3>
+				<div class="room-choice text-center">
+					<input type="radio" name="secret" id="openRadio" onchange="onSecrestChange(this);">
+					<label class="mr-3" for="openRadio">공개방</label>
+					<input type="radio" name="secret" id="secretRadio" onchange="onSecrestChange(this);">
+					<label for="secretRadio">비공개방</label>
+				</div>
 				<div class="name">
 					<input type="text" class="form-control" name="name" placeholder="방제목">
 				</div>
