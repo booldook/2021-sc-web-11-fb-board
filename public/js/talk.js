@@ -235,7 +235,7 @@ function genRoom(k, v, isChange) {
 			html += '</div>';
 			html += '<div class="writer form-inline">';
 			html += '<input type="text" class="form-control" name="writer" placeholder="방장이름" value="'+v.writer+'">';
-			html += '<input type="password" class="form-control" name="roompw" placeholder="비밀번호" value="'+v.roompw+'">';
+			html += '<input type="password" class="form-control" name="roompw" placeholder="비밀번호" value="'+v.roompw+'" style="display: '+(v.secret ? 'inline-block' : 'none')+';">';
 			html += '</div>';
 			html += '<hr>';
 			html += '<div class="btn-wrap">';
