@@ -32,6 +32,7 @@ function onChangeAuth(r) {
 		$('.header-wrapper .photo img').attr('src', '//via.placeholder.com/1x1/333');
 		$('.header-wrapper .info-wrap').css('display', 'none');
 		$('.header-wrapper .logo i').css('display', 'inline-block');
+		onRoomOut();
 		$('.room-wrapper').css('display', 'none');
 		$('.room-wrapper').find('input[name="writer"]').val('');
 		$('.login-wrapper').css('display', 'flex');
@@ -108,10 +109,6 @@ function onSubmit(f) {
 	return false;
 }
 
-function onChatOut() {
-	$('.room-wrapper').css('display', 'flex');
-	$('.chat-wrapper').css('display', 'none');
-}
 
 /******************** room ***********************/
 function onRoomSubmit(f) {
@@ -150,9 +147,20 @@ function onRoomDelete(el) {
 	}
 }
 
+function onRoomOut() {
+	talkRef.child(talkKey).off('child_added');
+	talkKey = null;
+	prevDate = '';
+	$('.room-wrapper').css('display', 'flex');
+	$('.chat-wrapper').css('display', 'none');
+	$('.chat-wrapper .list-wrapper').empty();
+	$('.chat-wrapper .create-wrapper img').attr('src', '//via.palceholder.com/1x1');
+	$('.chat-wrapper .create-wrapper input[name="writer"]').val('');
+}
+
 function onRoomEnter(f) {
 	var key = f.key.value;
-	roomRef.child(key).once('value')
+	roomRef.child(key).get()
 	.then(function(r) {
 		if(r.val().roompw !== '') { // 비공개방
 			if(r.val().roompw === f.roompw.value.trim()) { // 패스워드 일치
@@ -242,5 +250,6 @@ function showTalk(rid) {
 	$('.chat-wrapper').css('display', 'flex');
 	$('.chat-wrapper .create-wrapper img').attr('src', user.photoURL);
 	$('.chat-wrapper .create-wrapper input[name="writer"]').val(user.displayName);
+	talkRef.child(talkKey).off('child_added');
 	talkRef.child(talkKey).on('child_added', onTalkAdded);
 }
