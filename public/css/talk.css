@@ -104,6 +104,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 .room-wrapper .room-choice {text-align: center; margin: .5em 0;}
 .room-wrapper .create input[type="text"] {padding: .125em .5em; font-size: .875em}
+.room-wrapper .create input[type="password"] {padding: .125em .5em; font-size: .875em}
 .room-wrapper .create > div {margin-bottom: .25em;}
 .room-wrapper .create > div.writer {display: flex; justify-content: space-between;}
 .room-wrapper .create > div > .text-danger {margin: .325em 0 .625em 0; font-size: .875em;}

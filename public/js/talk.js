@@ -57,6 +57,15 @@ roomRef.on('child_removed', onRoomRemoved);
 
 
 /*************** talk *****************/
+function onSecretChanged(el) {
+	if(el.value === 'open') {
+		$(el.form.roompw).hide();
+	}
+	else {
+		$(el.form.roompw).show();
+	}
+}
+
 function onTalkAdded(r) {
 	genTalk(r.key, r.val());
 }

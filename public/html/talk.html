@@ -56,9 +56,9 @@
 			<form class="room-wrap create" onsubmit="return onRoomSubmit(this);">
 				<h3 class="title">신규 방 개설</h3>
 				<div class="room-choice text-center">
-					<input type="radio" name="secret" id="openRadio" onchange="onSecrestChange(this);">
+					<input type="radio" name="secret" id="openRadio" onchange="onSecretChanged(this);" value="open" checked>
 					<label class="mr-3" for="openRadio">공개방</label>
-					<input type="radio" name="secret" id="secretRadio" onchange="onSecrestChange(this);">
+					<input type="radio" name="secret" id="secretRadio" onchange="onSecretChanged(this);" value="secret">
 					<label for="secretRadio">비공개방</label>
 				</div>
 				<div class="name">
@@ -66,7 +66,7 @@
 				</div>
 				<div class="writer form-inline">
 					<input type="text" class="form-control" name="writer" placeholder="방장이름">
-					<input type="password" class="form-control" name="roompw" placeholder="비밀번호">
+					<input type="password" class="form-control" name="roompw" placeholder="비밀번호" style="display: none;">
 					<div class="text-danger">
 						* 비밀번호 입력시 비밀방이 됩니다<br>
 						* 미 입력시 오픈채팅방
