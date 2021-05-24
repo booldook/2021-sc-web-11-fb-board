@@ -51,6 +51,8 @@ a:link, a:visited, a:hover, a:active {color: inherit; text-decoration: none;}
 img {vertical-align: bottom;}
 input, button {border-radius: 0; outline: none; border: none; background-color: transparent; cursor: pointer;}
 
+label {user-select: none;}
+
 /******************** Base ***********************/
 .clearfix::after {display: block; content: ""; clear: both;}
 .img {width: 100%;}

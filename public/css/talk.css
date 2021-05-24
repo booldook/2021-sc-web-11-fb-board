@@ -58,7 +58,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 
 
 /********************** list-wrapper *********************/
-.chat-wrapper .list-wrapper {width: 96%; flex-grow: 1; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em; overflow-y: auto;}
+.chat-wrapper .list-wrapper {width: 96%; flex-grow: 1; border: 2px solid #333; background-color: #f5e9f3; border-radius: 8px; padding: .5em; overflow-y: auto; min-height: 300px;}
 .chat-wrapper .list-wrapper .line {display: flex; align-items: center; margin: 2em 0; color: #555;}
 .chat-wrapper .list-wrapper .line > span {padding: 0 .5em;}
 .chat-wrapper .list-wrapper .line::before {display: block; content: ''; height: 2px; background-color: #999; flex-grow: 1;}
@@ -97,7 +97,7 @@ html, body {font-family: 'NanumBarunGothic', sans-serif;}
 .room-wrapper .room-wrap h4.writer {font-size: 1.125em; margin-bottom: .5em;}
 .room-wrapper .room-wrap .date {color: #777; margin-bottom: .5em;}
 .room-wrapper .room-wrap .btn {padding: 3px 8px 1px 8px;}
-.room-wrapper .room-wrap .enter-wrap {justify-content: center; margin-top: .5em; padding-top: 1em; border-top: 2px solid #dfc1da;}
+.room-wrapper .room-wrap .enter-wrap {justify-content: center;}
 
 .room-wrapper .room-wrap.create {background-color: #ddd; border: 3px solid #a0a0a0;}
 .room-wrapper .room-wrap.secure {background-color: #c5afe9; border: 3px solid #a55fa9;}
